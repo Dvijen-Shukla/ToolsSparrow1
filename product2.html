@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ToolsSparrow — Netflix Premium</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #010101;
+    --surface: #0a0a0a;
+    --card: #0d0d0d;
+    --border: rgba(255,255,255,0.04);
+    --border-glow: rgba(255,255,255,0.08);
+    --primary: #ffffff;
+    --accent: #ff4d4d;
+    --accent-dim: rgba(255,77,77,0.12);
+    --text-dim: #86868b;
+    --text-muted: #424245;
+    --font: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--primary);
+    font-family: var(--font);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(255,77,77,0.2); }
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%; z-index: 100;
+    padding: 1rem 6%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(1,1,1,0.6);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.03);
+}
+.logo { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.2px; text-decoration: none; color: white; }
+.logo span { color: var(--accent); font-weight: 600; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: #9ca3af; text-decoration: none; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: white; }
+.nav-icons { display: flex; gap: 1.2rem; }
+.nav-icons i { color: #6b7280; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
+.nav-icons i:hover { color: white; }
+
+/* Container */
+.container { max-width: 1400px; margin: 0 auto; padding: 0 7%; }
+
+/* --- REFINED TOP-TIER HERO --- */
+.hero {
+    padding-top: clamp(160px, 20vh, 220px);
+    padding-bottom: 80px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.hero-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+}
+h1 {
+    font-size: clamp(3.5rem, 11vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.05em; /* Apple Style Tracking */
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #FFFFFF 40%, #555555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-desc { 
+    color: var(--text-dim); 
+    font-size: 1.2rem; 
+    line-height: 1.4; 
+    max-width: 540px; 
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+/* Product Showcase */
+.product-showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    margin: 40px 0 100px;
+    align-items: center;
+}
+@media (max-width: 900px) { .product-showcase { grid-template-columns: 1fr; gap: 48px; } }
+
+.image-frame {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #050505;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--border);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.image-frame img { width: 100%; height: 100%; object-fit: cover; }
+.image-accent {
+    position: absolute; bottom: 20px; left: 20px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    padding: 6px 16px; border-radius: 40px;
+    font-size: 0.7rem; font-weight: 500;
+}
+
+.product-side { display: flex; flex-direction: column; gap: 32px; }
+.price-group { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.price-current { font-size: 3.5rem; font-weight: 600; letter-spacing: -0.03em; }
+.price-old { font-size: 1.2rem; color: var(--text-muted); text-decoration: line-through; }
+.discount { background: var(--accent-dim); padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; font-weight: 600; color: var(--accent); }
+
+.feature-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0; }
+.feature-badge {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #2c2c2e;
+    padding: 14px; border-radius: 16px;
+    font-size: 0.8rem; display: flex; align-items: center; gap: 10px;
+    transition: 0.3s;
+}
+.feature-badge:hover { border-color: #555; background: rgba(255,255,255,0.04); }
+.feature-badge i { color: var(--accent); }
+
+.actions { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0; }
+.btn-wa {
+    background: var(--primary); border: none; padding: 16px 40px;
+    border-radius: 14px; font-weight: 600; font-size: 0.9rem;
+    color: black; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s;
+}
+.btn-wa:hover { background: #f5f5f7; transform: scale(1.02); }
+
+/* Toggle Wishlist State */
+.btn-wish {
+    background: transparent; border: 1px solid #2c2c2e;
+    padding: 16px 28px; border-radius: 14px;
+    font-weight: 500; color: white; cursor: pointer;
+    display: flex; align-items: center; gap: 10px; transition: 0.3s;
+}
+.btn-wish.active { border-color: var(--accent); background: rgba(255,77,77,0.05); }
+.btn-wish.active i { color: var(--accent); font-weight: 900; }
+
+.trust-badge {
+    display: flex; gap: 24px; flex-wrap: wrap; padding: 20px 0;
+    border-top: 0.5px solid rgba(255,255,255,0.05); font-size: 0.75rem; color: var(--text-dim);
+}
+
+/* Feature wall */
+.feature-wall { margin: 120px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 32px; overflow: hidden; }
+.feature-tile { background: var(--card); padding: 48px 32px; transition: 0.2s; }
+.feature-tile:hover { background: #0f0f0f; }
+.feature-tile .tile-icon { font-size: 1.8rem; color: var(--accent); margin-bottom: 24px; }
+.feature-tile h4 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+.feature-tile p { color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
+@media (max-width: 800px) { .feature-wall { grid-template-columns: 1fr; } }
+
+.value-section { margin: 100px 0; }
+.value-title { text-align: center; font-size: 1.6rem; font-weight: 500; margin-bottom: 56px; }
+.value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 800px) { .value-grid { grid-template-columns: 1fr; } }
+.value-card { background: var(--surface); border-radius: 32px; padding: 36px 28px; border: 0.5px solid var(--border); text-align: center; }
+.value-card i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; display: inline-block; }
+.value-card h4 { font-weight: 600; margin-bottom: 10px; }
+.value-card p { color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
+
+.steps-panel { background: var(--surface); border-radius: 48px; padding: 56px 48px; margin: 100px 0; border: 0.5px solid var(--border); }
+.steps-panel h3 { text-align: center; font-size: 1.3rem; font-weight: 500; margin-bottom: 48px; }
+.steps-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.step-item { flex: 1; text-align: center; min-width: 130px; }
+.step-num { width: 44px; height: 44px; background: rgba(255,77,77,0.1); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent); margin: 0 auto 16px; }
+.step-item h5 { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+.step-item p { color: var(--text-dim); font-size: 0.7rem; }
+
+.faq-module { max-width: 880px; margin: 100px auto; }
+.faq-module h2 { text-align: center; font-size: 1.6rem; font-weight: 500; margin-bottom: 48px; }
+.faq-list { border-top: 0.5px solid var(--border); }
+.faq-entry { border-bottom: 0.5px solid var(--border); padding: 22px 0; cursor: pointer; }
+.faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 500; font-size: 0.95rem; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; color: var(--text-dim); font-size: 0.8rem; line-height: 1.6; }
+.faq-entry.active .faq-a { max-height: 180px; padding-top: 14px; }
+.faq-arrow { transition: transform 0.2s; }
+.faq-entry.active .faq-arrow { transform: rotate(45deg); }
+
+.warranty-banner { background: linear-gradient(135deg, rgba(255,77,77,0.04) 0%, rgba(0,0,0,0.2) 100%); border-radius: 48px; padding: 52px 32px; text-align: center; margin: 80px 0; border: 0.5px solid rgba(255,77,77,0.1); }
+
+.related-section { margin: 80px 0 60px; }
+.related-section h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 32px; }
+.related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 1000px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+.rel-item { background: var(--card); border-radius: 28px; overflow: hidden; border: 0.5px solid var(--border); transition: 0.2s; }
+.rel-item:hover { transform: translateY(-4px); border-color: rgba(255,77,77,0.3); }
+.rel-img { aspect-ratio: 1; background: #0a0a0a; }
+.rel-img img { width: 100%; height: 100%; object-fit: cover; }
+.rel-detail { padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+.rel-name { font-weight: 500; font-size: 0.8rem; }
+.rel-prices { font-size: 0.8rem; font-weight: 600; }
+.rel-old { font-size: 0.65rem; color: #424245; text-decoration: line-through; margin-left: 6px; }
+
+footer { text-align: center; padding: 50px 0 40px; border-top: 0.5px solid var(--border); color: var(--text-dim); font-size: 0.65rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html" class="logo">Tools<span>Sparrow</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+    </div>
+    <div class="nav-icons">
+        <i class="far fa-heart"></i>
+        <i class="far fa-user"></i>
+        <i class="fas fa-shopping-bag"></i>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="hero">
+        <div class="hero-badge">CINEMA EDITION</div>
+        <h1>Netflix Premium.</h1>
+        <p class="hero-desc">The definitive streaming experience. 4K UHD, Spatial Audio, and four screens — guaranteed for 12 months.</p>
+    </div>
+
+    <div class="product-showcase">
+        <div class="image-frame">
+            <img src="img/netflix2.png" alt="Netflix Premium" onerror="this.src='https://placehold.co/800x800/111111/ff4d4d?text=Netflix+Premium'">
+            <div class="image-accent">4K HDR • DOLBY ATMOS</div>
+        </div>
+        <div class="product-side">
+            <div class="price-group">
+                <span class="price-current">₹1,299</span>
+                <span class="price-old">₹4,999</span>
+                <span class="discount">Save 74%</span>
+            </div>
+            
+            <div class="feature-badges">
+                <div class="feature-badge"><i class="fas fa-tv"></i> 4K + HDR10+</div>
+                <div class="feature-badge"><i class="fas fa-users"></i> 4 screens</div>
+                <div class="feature-badge"><i class="fas fa-download"></i> Offline Mode</div>
+                <div class="feature-badge"><i class="fas fa-shield-alt"></i> 12mo warranty</div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-wa" id="whatsappBtn"><i class="fab fa-whatsapp"></i> Secure Access</button>
+                <button class="btn-wish" id="wishlistBtn"><i class="far fa-heart"></i> <span>Save</span></button>
+            </div>
+            
+            <div class="trust-badge">
+                <span><i class="fas fa-check-circle"></i> 5,000+ members</span>
+                <span><i class="fas fa-clock"></i> 5min delivery</span>
+                <span><i class="fas fa-headset"></i> 24/7 concierge</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-wall">
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-tv"></i></div><h4>Ultra HD 4K + HDR</h4><p>Cinematic quality with Dolby Vision and HDR10+ on every compatible screen.</p></div>
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-users"></i></div><h4>4 Simultaneous Streams</h4><p>Family plan ready. Watch together without interruptions.</p></div>
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-download"></i></div><h4>Offline Mode</h4><p>Download on up to 6 devices. Watch anywhere, anytime.</p></div>
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-globe"></i></div><h4>Global Access</h4><p>Works worldwide. No VPN. No region restrictions.</p></div>
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-shield-alt"></i></div><h4>12-Month Warranty</h4><p>Full replacement guarantee. 2-hour response time.</p></div>
+        <div class="feature-tile"><div class="tile-icon"><i class="fas fa-lock"></i></div><h4>Privacy PIN</h4><p>Your profile is protected. Watch history stays private.</p></div>
+    </div>
+
+    <div class="value-section">
+        <div class="value-title">Why choose ToolsSparrow</div>
+        <div class="value-grid">
+            <div class="value-card"><i class="fas fa-bolt"></i><h4>Instant delivery</h4><p>Credentials in your WhatsApp within minutes after payment.</p></div>
+            <div class="value-card"><i class="fas fa-medal"></i><h4>12-month warranty</h4><p>Any issue? Replacement within 2 hours or full refund.</p></div>
+            <div class="value-card"><i class="fas fa-headset"></i><h4>24/7 human support</h4><p>Real people, real help. Always available.</p></div>
+        </div>
+    </div>
+
+    <div class="steps-panel">
+        <h3>How to start</h3>
+        <div class="steps-row">
+            <div class="step-item"><div class="step-num">1</div><h5>Order via WhatsApp</h5><p>Click & complete payment</p></div>
+            <div class="step-item"><div class="step-num">2</div><h5>Receive login</h5><p>5–10 min delivery</p></div>
+            <div class="step-item"><div class="step-num">3</div><h5>Activate & enjoy</h5><p>Works on all devices</p></div>
+            <div class="step-item"><div class="step-num">4</div><h5>Warranty active</h5><p>12 months protection</p></div>
+        </div>
+    </div>
+
+    <div class="faq-module">
+        <h2>Questions. Answered.</h2>
+        <div class="faq-list">
+            <div class="faq-entry active">
+                <div class="faq-q"><span>Is this a genuine Netflix Premium account?</span><i class="fas fa-plus faq-arrow"></i></div>
+                <div class="faq-a">Yes. You receive full premium access (4K, multi-screen, downloads) via our verified shared family plan. Backed by 12-month warranty and 7-day refund policy.</div>
+            </div>
+            <div class="faq-entry">
+                <div class="faq-q"><span>How do you ensure trust and security?</span><i class="fas fa-plus faq-arrow"></i></div>
+                <div class="faq-a">We never ask for your personal password. Your profile is PIN-protected. 5000+ verified customers with 99% satisfaction rate.</div>
+            </div>
+            <div class="faq-entry">
+                <div class="faq-q"><span>Which devices are compatible?</span><i class="fas fa-plus faq-arrow"></i></div>
+                <div class="faq-a">Smart TVs, Apple TV, Firestick, Chromecast, PS5, Xbox, iPhone, iPad, Android, and all web browsers. 4K on supported devices.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warranty-banner">
+        <i class="fas fa-award" style="font-size: 2rem; color: #ff4d4d; margin-bottom: 16px; display: inline-block;"></i>
+        <h3 style="font-weight: 500; font-size: 1.2rem;">12-month peace of mind warranty</h3>
+        <p style="color: var(--text-dim); max-width: 480px; margin: 12px auto 0;">Any issue? We replace within 2 hours or refund fully. No questions.</p>
+    </div>
+
+    <div class="related-section">
+        <h3>Explore more</h3>
+        <div class="related-grid" id="relatedGrid"></div>
+    </div>
+
+    <footer>© 2026 ToolsSparrow — Premium Digital Subscriptions</footer>
+</main>
+
+<script>
+    const lenis = new Lenis({ duration: 1.2 });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Apple Style Smooth Reveal
+    gsap.from('.hero h1', { opacity: 0, y: 50, duration: 1.2, ease: "power4.out" });
+    gsap.from('.hero-desc', { opacity: 0, y: 20, duration: 1.2, delay: 0.3, ease: "power4.out" });
+    gsap.from('.product-showcase', { opacity: 0, y: 40, duration: 1, delay: 0.5, ease: "power2.out" });
+
+    // Scroll trigger for sections
+    gsap.utils.toArray('.feature-tile, .value-card, .steps-panel, .faq-module, .warranty-banner, .related-section').forEach(el => {
+        gsap.from(el, { scrollTrigger: { trigger: el, start: 'top 85%' }, y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' });
+    });
+
+    // Related Products Logic
+    const related = [
+        { name: "Prime Video", price: 999, original: 2999, img: "img/prime.png" },
+        { name: "Disney+ Hotstar", price: 799, original: 1499, img: "img/hotstar.png" },
+        { name: "Gemini AI Pro", price: 1899, original: 3999, img: "img/gemini.png" },
+        { name: "ChatGPT Plus", price: 1999, original: 4999, img: "img/chatgpt.png" }
+    ];
+    const grid = document.getElementById('relatedGrid');
+    if (grid) {
+        grid.innerHTML = related.map(p => `
+            <div class="rel-item">
+                <div class="rel-img"><img src="${p.img}" onerror="this.src='https://placehold.co/400x400/111/ff4d4d?text=${p.name.split(' ')[0]}'" loading="lazy"></div>
+                <div class="rel-detail"><span class="rel-name">${p.name}</span><div><span class="rel-prices">₹${p.price.toLocaleString()}</span><span class="rel-old">₹${p.original.toLocaleString()}</span></div></div>
+            </div>
+        `).join('');
+    }
+
+    // --- UPDATED TOGGLE WISHLIST LOGIC ---
+    const wishBtn = document.getElementById('wishlistBtn');
+    if (wishBtn) {
+        // Initial state check
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        const isLiked = wishlist.includes('netflix_premium');
+        
+        if (isLiked) {
+            wishBtn.classList.add('active');
+            wishBtn.querySelector('i').className = 'fas fa-heart';
+            wishBtn.querySelector('span').innerText = 'Saved';
+        }
+
+        wishBtn.addEventListener('click', () => {
+            const icon = wishBtn.querySelector('i');
+            const label = wishBtn.querySelector('span');
+            wishBtn.classList.toggle('active');
+            
+            let w = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            
+            if (wishBtn.classList.contains('active')) {
+                // Liked
+                icon.className = 'fas fa-heart';
+                label.innerText = 'Saved';
+                if (!w.includes('netflix_premium')) w.push('netflix_premium');
+                
+                // Animation Burst
+                const rect = wishBtn.getBoundingClientRect();
+                const fly = document.createElement('i');
+                fly.className = 'fas fa-heart';
+                fly.style.cssText = `position:fixed; left:${rect.left + rect.width/2}px; top:${rect.top + rect.height/2}px; color:#ff4d4d; font-size:1.6rem; transform:translate(-50%,-50%) scale(0); transition:0.5s; z-index:99; pointer-events:none;`;
+                document.body.appendChild(fly);
+                setTimeout(() => { fly.style.transform = 'translate(-50%, -100%) scale(2)'; fly.style.opacity = '0'; }, 10);
+                setTimeout(() => fly.remove(), 500);
+            } else {
+                // Unliked
+                icon.className = 'far fa-heart';
+                label.innerText = 'Save';
+                w = w.filter(id => id !== 'netflix_premium');
+            }
+            
+            localStorage.setItem('wishlist', JSON.stringify(w));
+        });
+    }
+
+    const wa = document.getElementById('whatsappBtn');
+    if (wa) {
+        wa.addEventListener('click', () => {
+            const msg = encodeURIComponent("Hello ToolsSparrow! I want to order Netflix Premium 4K plan (₹1299).");
+            window.open(`https://wa.me/9023992728?text=${msg}`, '_blank');
+        });
+    }
+
+    const faqs = document.querySelectorAll('.faq-entry');
+    faqs.forEach(f => {
+        f.addEventListener('click', () => {
+            const active = f.classList.contains('active');
+            faqs.forEach(i => i.classList.remove('active'));
+            if (!active) f.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

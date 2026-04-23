@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Products Showcase</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+.product-slider-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.product-slider-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 40px 6rem;
+}
+
+.product-slider-track::-webkit-scrollbar {
+  display: none;
+}
+
+.product-slider-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.product-card {
+  flex: 0 0 320px;
+  background: #111;
+  border-radius: 20px;
+  padding: 24px;
+  min-height: 380px;
+  transition: all .3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.discount-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #111;
+  padding: 8px 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* keep product image clean */
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin: 20px 0;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* base shadow under the product */
+.product-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 10px;
+  background: rgba(99, 99, 99, 0.5);
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.current-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 10px;
+  background-color: #333;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: gray;
+  text-decoration: line-through;
+}
+
+.product-controls {
+  position: sticky;
+  bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.product-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.product-btn:hover {
+  background: #444;
+}
+
+
+.explore-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-header h3 {
+  font-size: 1.6rem;
+}
+
+.explore-images-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  margin: 20px 0;
+}
+
+.explore-image {
+  position: absolute;
+  height: 200px;
+  object-fit: contain;
+  transition: all 0.4s ease;
+}
+
+.tv-image {
+  left: -160px;
+  bottom: 5px;
+}
+
+.phone-image {
+  right: -15px;
+  bottom: -120px;
+  height: 210px;
+}
+
+.explore-card:hover .tv-image {
+  transform: translateX(5px) translateY(-3px);
+}
+
+.explore-card:hover .phone-image {
+  transform: translateX(-5px) translateY(-3px);
+}
+
+@media(max-width:768px) {
+  .slider-track,
+  .product-slider-track {
+    padding: 20px 2rem;
+  }
+
+  .card,
+  .product-card {
+    flex: 0 0 280px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+
+    <div class="section-header">
+      <h1 class="section-title">ALL Products</h1>
+      <p class="section-subtitle">Discover. Choose. Elevate.</p>
+    </div>
+
+<div class="products-section">
+  <div class="products-container">
+    <!-- Tools Row -->
+    <div class="product-slider-container">
+      <div class="product-slider-track" id="tools-slider">
+
+        <!-- Example Card -->
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Design & Graphics</div>
+            <h3>Adobe Illustrator</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/adobe illustrator.png" class="product-image" alt="Illustrator">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="1999">₹1999</span>
+          </div>
+        </div>
+
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Design & Graphics</div>
+            <h3>Adobe Illustrator</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/perplexity.png" class="product-image" alt="Illustrator">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="1999">₹1999</span>
+          </div>
+        </div>
+
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Design & Graphics</div>
+            <h3>Adobe Illustrator</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/chatgpt.png" class="product-image" alt="Illustrator">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="1999">₹1999</span>
+          </div>
+        </div>
+
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Design & Graphics</div>
+            <h3>Adobe Illustrator</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/figma.png" class="product-image" alt="Illustrator">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="1999">₹1999</span>
+          </div>
+        </div>
+
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Design & Graphics</div>
+            <h3>Adobe Illustrator</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/adobe.png" class="product-image" alt="Illustrator">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="1999">₹1999</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OTT Row -->
+    <div class="product-slider-container">
+      <div class="product-slider-track" id="ott-slider">
+
+        <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Entertainment</div>
+            <h3>Netflix Premium</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/netflix2.png" class="product-image" alt="Netflix">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="799">₹799</span>
+          </div>
+        </div>
+
+         <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Entertainment</div>
+            <h3>Netflix Premium</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/prime.png" class="product-image" alt="Netflix">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="799">₹799</span>
+          </div>
+        </div>
+
+         <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Entertainment</div>
+            <h3>Netflix Premium</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/sonyliv.png" class="product-image" alt="Netflix">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="799">₹799</span>
+          </div>
+        </div>
+
+         <div class="product-card" onclick="location.href='add-to-cart.html'">
+          <div class="discount-badge"></div>
+          <div class="card-header">
+            <div class="category-label">Entertainment</div>
+            <h3>Netflix Premium</h3>
+          </div>
+          <div class="product-wrapper">
+            <img src="img/Zee5.png" class="product-image" alt="Netflix">
+          </div>
+          <div class="price-container">
+            <span class="current-price" data-price="499">₹499</span>
+            <span class="original-price" data-price="799">₹799</span>
+          </div>
+        </div>
+
+        
+
+        <!-- Repeat your OTT cards... -->
+
+        <div class="product-card explore-card" onclick="location.href='explore-all.html'">
+          <div class="card-header exp-header">
+            <div class="category-label">Discover</div>
+            <h3>Explore All Products</h3>
+          </div>
+          <div class="explore-images-container">
+            <img src="img/exp4.png" class="explore-image tv-image" alt="TV">
+            <img src="img/exp5.png" class="explore-image phone-image" alt="Phone">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="product-controls">
+      <button class="product-btn" id="products-prev">←</button>
+      <button class="product-btn" id="products-next">→</button>
+    </div>
+  </div>
+</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const toolsSlider = document.getElementById('tools-slider');
+  const ottSlider = document.getElementById('ott-slider');
+  const prevBtn = document.getElementById('products-prev');
+  const nextBtn = document.getElementById('products-next');
+  const cardWidth = 340;
+
+  function calcDiscount(card) {
+    if (card.classList.contains('explore-card')) return;
+    const cur = card.querySelector('.current-price');
+    const orig = card.querySelector('.original-price');
+    const badge = card.querySelector('.discount-badge');
+    if (cur && orig && badge) {
+      const cp = parseFloat(cur.dataset.price);
+      const op = parseFloat(orig.dataset.price);
+      if (op > cp) {
+        const disc = Math.round(((op - cp) / op) * 100);
+        badge.textContent = `-${disc}%`;
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+  }
+
+  document.querySelectorAll('.product-card').forEach(calcDiscount);
+
+  function scrollSliders(direction) {
+    [toolsSlider, ottSlider].forEach(slider => {
+      gsap.to(slider, {
+        scrollTo: { x: slider.scrollLeft + direction * cardWidth },
+        duration: 1,
+        ease: 'power3.out'
+      });
+    });
+  }
+
+  prevBtn.onclick = () => scrollSliders(-1);
+  nextBtn.onclick = () => scrollSliders(1);
+});
+
+  </script>
+</body>
+
+</html>

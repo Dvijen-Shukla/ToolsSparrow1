@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ToolsSparrow — Shop</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="shop.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/tlogo.png" alt="ToolsSparrow">
+            <span class="logo-text">Tools<span>Sparrow</span></span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="shop.html" class="nav-link active">Shop</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="product.html" class="nav-link">Product</a></li>
+            <li><a href="product2.html" class="nav-link">Product2</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" placeholder="Find services..." />
+            </div>
+            <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+            <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge">3</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-wrapper">
+        <div class="container">
+            <!-- HERO -->
+            <header class="hero">
+                <h1 class="shop-title">SHOP</h1>
+                <div class="hero-right">
+                    <div class="tagline">Hand-picked digital tools for creators & product teams.</div>
+                </div>
+            </header>
+
+            <!-- LAYOUT - FLEX NOT GRID FOR STICKY TO WORK -->
+            <div class="layout">
+                <!-- FILTERS SIDEBAR - STICKY WORKS! -->
+                <aside class="filters">
+                    <div class="filter-block">
+                        <div class="filter-header">
+                            <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="#bfbfbf"
+                                stroke-width="1.6">
+                                <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            </svg>
+                            <div>Categories</div>
+                        </div>
+                        <ul class="filter-list" id="categoryList"></ul>
+                    </div>
+
+                    <div class="filter-block">
+                        <div class="filter-header">
+                            <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="#bfbfbf"
+                                stroke-width="1.6">
+                                <path
+                                    d="M20.59 13.41L11 3 3 11l8.59 8.59a2 2 0 0 0 2.83 0l6.17-6.18a2 2 0 0 0 0-2.82z" />
+                                <circle cx="7" cy="7" r="1.5" />
+                            </svg>
+                            <div>Price</div>
+                        </div>
+                        <ul class="filter-list" id="priceList">
+                            <li class="filter-item" data-value="all">
+                                <input type="radio" name="price" id="price_all" checked>
+                                <label for="price_all" class="filter-row">
+                                    <span class="filter-name">All</span>
+                                </label>
+                            </li>
+                            <li class="filter-item" data-value="0-1700">
+                                <input type="radio" name="price" id="price_0">
+                                <label for="price_0" class="filter-row">
+                                    <span class="filter-name">₹0 – ₹1,700</span>
+                                </label>
+                            </li>
+                            <li class="filter-item" data-value="1700-3400">
+                                <input type="radio" name="price" id="price_1700">
+                                <label for="price_1700" class="filter-row">
+                                    <span class="filter-name">₹1,700 – ₹3,400</span>
+                                </label>
+                            </li>
+                            <li class="filter-item" data-value="3400-5100">
+                                <input type="radio" name="price" id="price_3400">
+                                <label for="price_3400" class="filter-row">
+                                    <span class="filter-name">₹3,400 – ₹5,100</span>
+                                </label>
+                            </li>
+                            <li class="filter-item" data-value="5100-6800">
+                                <input type="radio" name="price" id="price_5100">
+                                <label for="price_5100" class="filter-row">
+                                    <span class="filter-name">₹5,100 – ₹6,800</span>
+                                </label>
+                            </li>
+                            <li class="filter-item" data-value="6800+">
+                                <input type="radio" name="price" id="price_6800">
+                                <label for="price_6800" class="filter-row">
+                                    <span class="filter-name">₹6,800 +</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button class="btn" id="clearBtn">Reset Filters</button>
+                    </div>
+                </aside>
+
+                <!-- PRODUCTS -->
+                <div class="products-section">
+                    <div class="results-top">
+                        <div class="results-count" id="resultsCount">Showing all 18 results</div>
+                        <div class="active-chips" id="activeChips"></div>
+                    </div>
+                    <section class="grid" id="productGrid"></section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LENIS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="shop.js"></script>
+
+</body>
+
+</html>

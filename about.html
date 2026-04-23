@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – ToolsSparrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="scrollhero.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #121212;
+      --primary: #8b5cf6;
+      --primary-light: #a78bfa;
+      --white: #ffffff;
+      --gray: #a1a1aa;
+      --gray-dark: #3f3f46;
+      --success: #10b981;
+      --grid-bg: rgba(255, 255, 255, 0.03);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --price-high: rgba(255, 71, 87, 0.5);
+      --price-low: #00FFAA;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      background-color: #0d0d0d;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Smooth scroll container */
+    .smooth-scroll {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===== Premium Navbar ===== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background-color: #0d0d0ddd;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Logo (Minimal + Elegant) */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 1.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(15deg);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: var(--primary);
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      /* border: 2px solid red; */
+    }
+
+    /* Navigation Links (Subscription-Optimized) */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 0.5rem 0;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .nav-link.active {
+      color: #fff;
+      font-weight: 600;
+    }
+
+
+
+    /* Premium Icons (Search, Wishlist, Cart) */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-icon {
+      color: var(--gray);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-icon:hover {
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Search Bar (Minimal + Functional) */
+    .search-container {
+      position: relative;
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-dark);
+      font-size: 0.9rem;
+    }
+
+    .search-input {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 0.5rem 1rem 0.5rem 2rem;
+      color: var(--white);
+      width: 180px;
+      font-size: 0.9rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .search-input:focus {
+      outline: none;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .about {
+      max-width: 80vw;
+      margin: 160px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin: 40px 0 15px;
+      font-weight: 400;
+      color: #f5f5f5;
+    }
+
+    .about p {
+      margin-bottom: 28px;
+      color: #ccc;
+    }
+
+    strong {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .highlights {
+      margin: 40px 0;
+      padding-left: 18px;
+      border-left: 2px solid #2a2a2a;
+    }
+
+    .highlights p {
+      margin: 12px 0;
+      color: #ddd;
+    }
+
+    .contact {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .contact p {
+      margin: 10px 0;
+      color: #ccc;
+    }
+
+    .contact span {
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+
+
+
+
+    .footer {
+      color: #aaa;
+      margin-top: 5rem;
+      /* padding: 20px 6rem; */
+    }
+
+    .footer-inner {
+      padding: 40px;
+      max-width: 100vw;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 60px;
+      border-bottom: 1px solid #222;
+      border-top: 1px solid #555;
+      padding-bottom: 40px;
+      padding: 60px 6rem;
+      padding-left: 7rem;
+      padding-right: 5rem;
+    }
+
+    .footer-left {
+      flex: 1;
+    }
+
+    .footer-logo {
+      width: 140px;
+      margin-bottom: 14px;
+    }
+
+    .footer-tagline {
+      font-size: .9rem;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 80px;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 24px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: #aaa;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-contact p {
+      font-size: 1rem;
+      margin: 15px 0;
+      color: #aaa;
+    }
+
+    .footer-contact i {
+      color: #777;
+      font-size: .8rem;
+      min-width: 18px;
+      /* keeps alignment clean */
+      transition: color 0.3s;
+    }
+
+    .footer-contact p:hover i {
+      color: #fff;
+    }
+
+    .footer-contact span {
+      color: #fff;
+      margin-right: 6px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #777;
+      letter-spacing: 0.3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+      }
+
+      .footer-right {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="smooth-scroll">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="img/tlogo.png  " alt="">
+        <span class="logo-text">Tools<span>Sparrow</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Shop</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" class="search-input" placeholder="Find services..." />
+        </div>
+        <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+        <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+        <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i><span class="badge">3</span></a>
+      </div>
+    </nav>
+
+
+    <section class="about">
+      <h1>About Us – ToolsSparrow</h1>
+
+      <p>Welcome to <strong>ToolsSparrow.com</strong>, a brand under the business of <em>“ToolsSparrow Store”</em>, your
+        trusted destination for cutting-edge digital products.</p>
+
+      <p>ToolsSparrow is your go-to hub for high-quality digital products designed to empower learners and professionals
+        worldwide. Our mission is to make skill development accessible, affordable, and result-driven by providing
+        expertly crafted digital products across diverse fields.</p>
+
+      <p>At ToolsSparrow, we believe learning should be flexible and practical. That’s why we provide on-demand digital
+        solutions you can access anytime, anywhere. Whether you’re enhancing your career, starting a side hustle, or
+        scaling your business, we have the right products for you.</p>
+
+      <h2>Why Choose ToolsSparrow?</h2>
+      <div class="highlights">
+        <p>✅ Expert-Led Products – Created with insights from professionals with real-world experience.</p>
+        <p>✅ Instant Digital Access – Get lifetime access to your products as soon as you purchase.</p>
+        <p>✅ Practical & Actionable – Tools built for direct application, not just theory.</p>
+        <p>✅ Diverse Categories – From marketing and freelancing to design and development, we cover it all.</p>
+      </div>
+
+      <p>Thank you for choosing ToolsSparrow Store as your trusted source for digital products. We’re excited to be part
+        of your journey and look forward to serving you with the best in digital innovation. Explore our store and
+        experience the future today!</p>
+
+      <div class="contact">
+        <h2>Product Support</h2>
+        <p>Email Address: support@toolsparrow.com</p>
+        <p>WhatsApp Us: +91 63546 33185</p>
+      </div>
+    </section>
+
+
+
+
+    <!-- ==== FOOTER ==== -->
+    <footer class="footer">
+      <div class="footer-inner">
+
+        <!-- Left: Brand -->
+        <div class="footer-left">
+          <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
+          <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
+        </div>
+
+        <!-- Right: Links + Contact -->
+        <div class="footer-right">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Refund Policy</a></li>
+              <li><a href="shop.html">Shop</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br>
+              Sihor Ghanghali Road,<br>
+              Bhavnagar, Gujarat, India
+            </p>
+            <p><i class="fas fa-phone"></i> +91 63546 33185</p>
+            <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+
+    <!-- Include GSAP + ScrollToPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

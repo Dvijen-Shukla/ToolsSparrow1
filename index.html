@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolSparrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+  <!-- Add these additional CSS rules for better Lenis performance -->
+  <style>
+    /* Ensure smooth scrolling works perfectly */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* Make the scrollbar invisible but functional for cleaner look */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #8b5cf6;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a78bfa;
+    }
+
+    body.is-scrolling {
+      cursor: default;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="smooth-scroll">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="img/tlogo.png  " alt="">
+        <span class="logo-text">Tools<span>Sparrow</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Shop</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" class="search-input" placeholder="Find services..." />
+        </div>
+        <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+        <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+        <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i><span class="badge">3</span></a>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Parallax -->
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="text-wrapper">
+          <div class="text-content">
+            <div class="line">
+              <div class="line-left">
+                <span>All</span>
+                <div class="inline-imgs">
+                  <img src="img/netflix2.png" alt="Netflix" />
+                  <img src="img/prime.png" alt="Prime" />
+                  <div class="more-box">more</div>
+                </div>
+              </div>
+              <div class="line-right">
+                <span>the services</span>
+              </div>
+            </div>
+            <div class="line">
+              <div class="line-left">
+                <span>you need</span>
+              </div>
+              <div class="line-right">
+                <lottie-player src="json/arrow.json" background="transparent" speed=".4"
+                  style="width: 100%; height: 120px; transform: rotate(-90deg); margin-bottom: 60px; scale: 1.7;" loop autoplay>
+                </lottie-player>
+                <span>right</span>
+              </div>
+            </div>
+            <div class="cta-line">
+              <div class="line-left">
+                <span>now on</span>
+              </div>
+              <div class="line-right">
+                <button class="cta-btn">Toolssparrow</button>
+                <span>only</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Showcase with Parallax -->
+          <div class="phone-parallax-container">
+            <div class="phone-showcase">
+              <img src="img/phone.png" class="phone-mockup" alt="iPhone 16 Pro" />
+              <div class="phone-screen">
+                <!-- Slides (Netflix, ChatGPT, Adobe, Figma) -->
+                <div class="app-slide active">
+                  <div class="app-header">
+                    <img src="img/netflix2.png" class="app-logo" />
+                    <h2 class="app-title">Netflix Premium</h2>
+                    <p class="app-subtitle">The ultimate streaming experience</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">4K Ultra HD quality on all devices</div>
+                    <div class="app-benefit">Watch on 4 screens simultaneously</div>
+                    <div class="app-benefit">Unlimited movies, TV shows, and more</div>
+                    <div class="app-benefit">Download for offline viewing</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">₹649</div>
+                      <div class="price-toolsparrow">₹199</div>
+                    </div>
+                    <button class="subscribe-button">Get Netflix Premium</button>
+                  </div>
+                </div>
+
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/chatgpt.png" class="app-logo" />
+                    <h2 class="app-title">ChatGPT Plus</h2>
+                    <p class="app-subtitle">Most advanced AI assistant</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Access to GPT-4 Turbo model</div>
+                    <div class="app-benefit">32k context length for long conversations</div>
+                    <div class="app-benefit">Advanced data analysis capabilities</div>
+                    <div class="app-benefit">Browse with Bing for latest info</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow">$8</div>
+                    </div>
+                    <button class="subscribe-button">Get ChatGPT Plus</button>
+                  </div>
+                </div>
+
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/acc.png" class="app-logo" />
+                    <h2 class="app-title">Adobe Creative Cloud</h2>
+                    <p class="app-subtitle">All creative tools in one place</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">All 20+ Adobe creative applications</div>
+                    <div class="app-benefit">100GB of cloud storage</div>
+                    <div class="app-benefit">Premium fonts and templates</div>
+                    <div class="app-benefit">Behance ProSite portfolio</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">₹3,232</div>
+                      <div class="price-toolsparrow">₹999</div>
+                    </div>
+                    <button class="subscribe-button">Get Adobe CC</button>
+                  </div>
+                </div>
+
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/figma.png" class="app-logo" />
+                    <h2 class="app-title">Figma</h2>
+                    <p class="app-subtitle">Collaborative design without limits</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Unlimited version history</div>
+                    <div class="app-benefit">Advanced prototyping & animations</div>
+                    <div class="app-benefit">Unlimited projects and editors</div>
+                    <div class="app-benefit">Access to Dev Mode for developers</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow">$8</div>
+                    </div>
+                    <button class="subscribe-button">Get Figma Pro</button>
+                  </div>
+                </div>
+
+
+                <!-- SonyLiv -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/sonyliv.png" alt="SonyLiv" class="app-logo">
+                    <h2 class="app-title">SonyLiv</h2>
+                    <p class="app-subtitle">Stream exclusive shows & live sports</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Live streaming of cricket & football</div>
+                    <div class="app-benefit">Ad-free premium content</div>
+                    <div class="app-benefit">SonyLiv Originals and latest TV episodes</div>
+                    <div class="app-benefit">Watch on multiple devices</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get SonyLiv Premium</button>
+                  </div>
+                </div>
+
+                <!-- Gemini -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/gemini.png" alt="Gemini" class="app-logo">
+                    <h2 class="app-title">Gemini</h2>
+                    <p class="app-subtitle">AI assistant by Google for productivity</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Advanced Gemini tools</div>
+                    <div class="app-benefit">Docs & Gmail integration</div>
+                    <div class="app-benefit">Longer, smarter replies</div>
+                    <div class="app-benefit">Access new features first</div>
+                  </div>
+
+
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get Gemini Advanced</button>
+                  </div>
+                </div>
+
+                <!-- Perplexity AI -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/perplexity.png" alt="Perplexity AI" class="app-logo">
+                    <h2 class="app-title">Perplexity AI</h2>
+                    <p class="app-subtitle">Smarter research with citations</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Unlimited Pro searches</div>
+                    <div class="app-benefit">GPT-4 powered responses</div>
+                    <div class="app-benefit">File & link uploads for analysis</div>
+                    <div class="app-benefit">Priority access to new AI tools</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get Perplexity Pro</button>
+                  </div>
+                </div>
+
+                <!-- Amazon Prime -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/prime.png" alt="Amazon Prime" class="app-logo">
+                    <h2 class="app-title">Amazon Prime</h2>
+                    <p class="app-subtitle">Entertainment, shopping & more</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Free & fast delivery on orders</div>
+                    <div class="app-benefit">Unlimited Prime Video access</div>
+                    <div class="app-benefit">Ad-free Amazon Music</div>
+                    <div class="app-benefit">Prime Gaming & exclusive deals</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get Prime Membership</button>
+                  </div>
+                </div>
+
+                <!-- Zee5 -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/Zee5.png" alt="Zee5" class="app-logo">
+                    <h2 class="app-title">Zee5</h2>
+                    <p class="app-subtitle">Unlimited entertainment in your language</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">Ad-free streaming of all shows</div>
+                    <div class="app-benefit">Latest blockbuster movies</div>
+                    <div class="app-benefit">Zee5 Originals & web series</div>
+                    <div class="app-benefit">Watch in 12+ Indian languages</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get Zee5 Premium</button>
+                  </div>
+                </div>
+
+                <!-- Google Drive -->
+                <div class="app-slide">
+                  <div class="app-header">
+                    <img src="img/drive.png" alt="Google Drive" class="app-logo">
+                    <h2 class="app-title">Google Drive</h2>
+                    <p class="app-subtitle">Secure cloud storage for your files</p>
+                  </div>
+                  <div class="app-benefits">
+                    <div class="app-benefit">100GB+ cloud storage</div>
+                    <div class="app-benefit">Access across all devices</div>
+                    <div class="app-benefit">Google One benefits & support</div>
+                    <div class="app-benefit">Family sharing up to 5 people</div>
+                  </div>
+                  <div class="price-container">
+                    <div class="price-comparison">
+                      <div class="price-original">$20</div>
+                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                    </div>
+                    <!-- <div class="price-period">per month (billed monthly)</div> -->
+                    <button class="subscribe-button">Get Google One</button>
+                  </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="phone-navigation">
+                  <button class="nav-button" id="prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <div class="dynamic-indicator">
+                    <div class="indicator-progress"></div>
+                  </div>
+                  <button class="nav-button" id="next-button">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <div class="section-header">
+      <h1 class="section-title">Explore Categories</h1>
+      <p class="section-subtitle">The latest tools and services for your digital life</p>
+    </div>
+
+
+    <div class="slider-container">
+      <div class="slider-track" id="slider">
+        <!-- Your cards remain exactly the same -->
+        <div class="card">
+          <h3>Artificial Intelligence</h3>
+          <p>Explore AI tools, language models, and smart assistants shaping the future.</p>
+          <lottie-player src="json/ai2.json" background="transparent" speed=".2"
+            style="width: 100%; height: 200px; margin-top: auto; scale: 1;" loop autoplay>
+          </lottie-player>
+        </div>
+        <div class="card">
+          <h3>Entertainment</h3>
+          <p>Stream the best shows, movies, and games across OTT platforms.</p>
+          <lottie-player src="json/Digital media 3d.json" background="transparent" speed=".8"
+            style="width: 100%; height: 200px; margin-top: auto; scale: .9;" loop autoplay>
+          </lottie-player>
+        </div>
+        <div class="card">
+          <h3>Design & Graphics</h3>
+          <p>Create, sketch, and design with pro-level tools and intuitive workflows.</p>
+          <lottie-player src="json/Graphic Design process.json" background="transparent" speed="1"
+            style="width: 100%; height: 200px; margin-top: auto; scale: 1.2;" loop autoplay>
+          </lottie-player>
+        </div>
+        <div class="card">
+          <h3>Skill Development</h3>
+          <p>Upskill through online courses, masterclasses, and tutorials in various fields.</p>
+          <lottie-player src="json/App Development.json" background="transparent" speed=".5"
+            style="width: 100%; height: 200px; margin-top: auto; scale: 1.3;" loop autoplay>
+          </lottie-player>
+        </div>
+        <div class="card">
+          <h3>Cloud Storage</h3>
+          <p>Safely store and access your data anytime from anywhere in the world.</p>
+          <lottie-player src="json/Sync.json" background="transparent" speed=".5"
+            style="width: 100%; height: 200px; margin-top: auto; scale: 1.1;" loop autoplay>
+          </lottie-player>
+        </div>
+        <div class="card">
+          <h3>Productivity</h3>
+          <p>Get more done with tools for focus, scheduling, notes, and collaboration.</p>
+          <lottie-player src="json/Working together.json" background="transparent" speed=".5"
+            style="width: 100%; height: 200px; margin-top: auto; scale: 1.2;" loop autoplay>
+          </lottie-player>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="c-btn" id="prevBtn">←</button>
+      <button class="c-btn" id="nextBtn">→</button>
+    </div>
+
+
+
+
+    <section class="section">
+      <!-- First Row -->
+      <div class="row">
+        <!-- Adobe Card (Left) -->
+        <div class="m-card left-card">
+          <div class="top">
+            <img src="img/acc.png" alt="Adobe Logo">
+            <div>
+              <h2>Adobe Creative Cloud</h2>
+              <p>All-in-one suite for creators – Photoshop, AE, PR, and more.</p>
+              <div class="price-tag">$9.99<span>/mo</span></div>
+            </div>
+          </div>
+          <div class="logos">
+            <img src="img/ps.png" alt="PS">
+            <img src="img/ae.png" alt="AE">
+            <img src="img/pr.png" alt="PR">
+            <img src="img/adobe illustrator.png" alt="AI">
+          </div>
+
+          <button class="adb-cta-button">Get All Apps Now</button>
+
+          <div class="preview" style="background-image: url('img/adb.webp');">
+            <div class="gradient-overlay"></div>
+          </div>
+        </div>
+
+        <!-- Amazon Prime Card (Right) -->
+        <div class="m-card right-card prime-card">
+          <div class="top">
+            <img src="img/prime.png" alt="Amazon Prime">
+            <div>
+              <h3>Amazon Prime</h3>
+              <p class="desc">Watch unlimited shows, movies and Originals.</p>
+              <div class="price-tag">$59.99<span>/yr</span></div>
+            </div>
+          </div>
+          <div class="amz-preview">
+            <div class="tv-wrapper">
+              <img src="img/tv.png" alt="TV Mockup" class="tv-image">
+              <img src="img/amzprm.webp" alt="TV Content" class="screen-content">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="row">
+        <!-- ChatGPT Card (Left) -->
+        <div class="m-card right-card gpt-card">
+          <div class="top">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT+">
+            <div>
+              <h3>ChatGPT+</h3>
+              <p class="desc">Generate AI responses, images, code & more with GPT-4.</p>
+              <div class="price-tag">$20<span>/mo</span></div>
+            </div>
+          </div>
+
+          <div class="chatgpt-ui-preview">
+            <img src="img/gpt1.png" style="border-radius: 7px;" alt="ChatGPT Image Generation UI">
+          </div>
+        </div>
+
+
+
+        <!-- Microsoft 365 Card (replacing Figma) -->
+        <div class="m-card left-card ms365-card">
+          <div class="top">
+            <img src="img/m365.png" alt="Microsoft 365 Logo">
+            <div>
+              <h2>Microsoft 365</h2>
+              <p>Premium Office apps, cloud storage, and advanced security for you and your team.</p>
+              <div class="price-tag">$6.99<span>/mo</span></div>
+            </div>
+          </div>
+          <div class="logos">
+            <img src="img/word.png" alt="Word">
+            <img src="img/excel.png" alt="Excel">
+            <img src="img/power.png" alt="PowerPoint">
+            <img src="img/outlook.png" alt="Outlook">
+            <img src="img/team.png" alt="Teams">
+            <img src="img/onedrive.png" alt="OneDrive">
+          </div>
+
+          <button class="adb-cta-button ms365-button">Get Microsoft 365</button>
+
+          <div class="preview" style="background-image: url('img/micro2.png');">
+            <div class="gradient-overlay"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <div class="section-header">
+      <h1 class="section-title">All Products</h1>
+      <p class="section-subtitle">Discover. Choose. Elevate.</p>
+    </div>
+
+    <div class="products-section">
+      <div class="products-container">
+        <!-- Tools Row -->
+        <div class="product-slider-container">
+          <div class="product-slider-track" id="tools-slider">
+
+            <!-- Example Card -->
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Adobe Illustrator</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/figmaproduct.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="1999">₹1999</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Adobe Illustrator</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/perplexity.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="1999">₹1999</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Adobe Illustrator</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/drive.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="1999">₹1999</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Adobe Illustrator</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/figma.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="1999">₹1999</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Adobe Illustrator</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/adobe.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="1999">₹1999</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- OTT Row -->
+        <div class="product-slider-container">
+          <div class="product-slider-track" id="ott-slider">
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Entertainment</div>
+                <h3>Netflix Premium</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/netflix2.png" class="product-image" alt="Netflix">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="799">₹799</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Entertainment</div>
+                <h3>Netflix Premium</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/prime.png" class="product-image" alt="Netflix">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="799">₹799</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Entertainment</div>
+                <h3>Netflix Premium</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/sonyliv.png" class="product-image" alt="Netflix">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="799">₹799</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='add-to-cart.html'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Entertainment</div>
+                <h3>Netflix Premium</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/Zee5.png" class="product-image" alt="Netflix">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="499">₹499</span>
+                <span class="original-price" data-price="799">₹799</span>
+              </div>
+            </div>
+
+
+
+            <!-- Repeat your OTT cards... -->
+
+            <div class="product-card explore-card" onclick="location.href='explore-all.html'">
+              <div class="card-header exp-header">
+                <div class="category-label">Discover</div>
+                <h3>Explore All Products</h3>
+              </div>
+              <div class="explore-images-container">
+                <img src="img/exp4.png" class="explore-image exp-tv-image" alt="TV">
+                <img src="img/exp5.png" class="explore-image phone-image" alt="Phone">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="product-controls">
+          <button class="product-btn" id="products-prev">←</button>
+          <button class="product-btn" id="products-next">→</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- ==== FOOTER ==== -->
+    <footer class="footer">
+      <div class="footer-inner">
+
+        <!-- Left: Brand -->
+        <div class="footer-left">
+          <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
+          <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
+        </div>
+
+        <!-- Right: Links + Contact -->
+        <div class="footer-right">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Refund Policy</a></li>
+              <li><a href="#">Shop</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br>
+              Sihor Ghanghali Road,<br>
+              Bhavnagar, Gujarat, India
+            </p>
+            <p><i class="fas fa-phone"></i> +91 63546 33185</p>
+            <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+
+    <!-- Lenis CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- EXTRA SLOW & LAZY SMOOTH SCROLLING -->
+    <script>
+      (function () {
+        // Initialize Lenis with EXTREMELY SLOW, LAZY premium settings
+        const lenis = new Lenis({
+          duration: 4.5,              // VERY SLOW - 4.5 seconds for full scroll (feels lazy and premium)
+          easing: (t) => 1 - Math.pow(1 - t, 4), // Smoother deceleration curve
+          smooth: true,
+          smoothTouch: false,
+          touchMultiplier: 1.2,
+          infinite: false,
+          lerp: 0.05,                // Very low lerp = maximum inertia and lazy feel
+          wheelMultiplier: 0.45,      // Very low = each scroll moves very little
+        });
+
+        // RAF loop
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sync with GSAP if available
+        if (window.gsap) {
+          gsap.ticker.remove(gsap.updateRoot);
+          gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+            gsap.updateRoot(time);
+          });
+          gsap.ticker.lagSmoothing(0);
+
+          if (window.ScrollTrigger) {
+            setTimeout(() => ScrollTrigger.refresh(), 100);
+            window.addEventListener('resize', () => setTimeout(() => ScrollTrigger.refresh(), 100));
+          }
+        }
+
+        window.lenis = lenis;
+        console.log('🐢 EXTRA SLOW & LAZY LENIS ACTIVE - Duration: 4.5s');
+      })();
+    </script>
+
+
+
+
+    <!-- Include GSAP + ScrollToPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+
+
+
+
+</body>
+
+</html>
