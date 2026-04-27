@@ -4,41 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Netflix Premium — ToolsSparrow</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <title>ToolsSparrow — Product Details</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
-        :root {
-            --bg: #050505;
-            --accent: rgb(157, 157, 243);
-            --accent-hover: #ff3b6b;
-            --text-dim: #86868b;
-            --border: rgba(255, 255, 255, 0.06);
-            --card-glass: rgba(255, 255, 255, 0.02);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #0a0a0a;
+            --accent: #a78bfa;
+            --text-dim: #8e8e93;
+            --text-muted: #6c6c70;
+            --nav-height: 88px;
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+
         body {
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: #ffffff;
+            font-family: var(--font);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-
-        /* ===== NAVBAR (FIXED) ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -48,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 88px;
+            height: var(--nav-height);
             padding: 0 5%;
             background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(16px);
@@ -156,438 +153,408 @@
             border-color: rgba(139, 92, 246, 0.3);
         }
 
-        /* Floating Action Pill */
-        .floating-action {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(120%);
-            z-index: 98;
-            background: rgba(0, 0, 0, 0);
-            backdrop-filter: blur(24px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 80px;
-            padding: 8px 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 6%;
         }
 
-        .floating-action.visible {
-            transform: translateX(-50%) translateY(0);
+        .hero-minimal {
+            text-align: center;
+            padding: clamp(140px, 16vh, 180px) 0 64px;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
-        .product-icon-mini {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-right: 16px;
-            border-right: 0.5px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .product-icon-mini img {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .product-icon-mini span {
-            font-size: 0.8rem;
+        .hero-minimal h1 {
+            font-size: clamp(2.8rem, 6.5vw, 4.2rem);
             font-weight: 600;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.045em;
+            line-height: 1.08;
+            margin-bottom: 14px;
+            color: #ffffff;
         }
 
-        .floating-price {
+        .hero-minimal p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-dim);
+            max-width: 420px;
+            margin: 0 auto 26px;
+            font-weight: 400;
+        }
+
+        .price-minimal {
             display: flex;
             align-items: baseline;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 26px;
         }
 
-        .floating-price .current {
-            font-size: 1.3rem;
-            font-weight: 700;
+        .price-minimal .current {
+            font-size: 2rem;
+            font-weight: 600;
             letter-spacing: -0.02em;
+            color: #fff;
         }
 
-        .floating-price .old {
-            font-size: 0.75rem;
-            color: var(--text-dim);
+        .price-minimal .original {
+            font-size: 1.2rem;
+            color: var(--text-muted);
             text-decoration: line-through;
         }
 
-        .floating-btn {
-            background: var(--accent);
-            border: none;
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: #0d0d0d;
-            cursor: pointer;
+        .actions-minimal {
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-        }
-        
-        .floating-wish {
-            background: transparent;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 60px;
-            font-weight: 500;
-            font-size: 0.8rem;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-        }
-
-        .floating-wish i {
-            transition: transform 0.2s;
-        }
-
-        .floating-wish.wish-active i {
-            color: var(--accent);
-        }
-
-        /* ===== REFINED APPLE-STYLE HERO TITLE ===== */
-        .hero-wrap {
-            min-height: 100vh;
-            height: auto;
-            position: relative;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            perspective: 1000px;
-            padding: 140px 5% 100px;
-        }
-
-        /* Ultra-minimal Apple-inspired title */
-        .hero-title-container {
-            text-align: center;
-            z-index: 10;
-            margin-bottom: 48px;
-            width: 100%;
-        }
-
-        .hero-sup {
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 16px;
-            display: inline-block;
-            opacity: 0.85;
-        }
-
-        .hero-main {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.05;
-            margin-bottom: 16px;
-            color: white;
-        }
-
-        .hero-description {
-            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
-            color: var(--text-dim);
-            font-weight: 400;
-            max-width: 520px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        /* Creative Background */
-        .hero-bg-treatment {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero-bg-treatment::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(255, 45, 85, 0.04) 0%, transparent 80%);
-            opacity: 0.4;
-        }
-
-        .hero-bg-treatment::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
-            background-repeat: repeat;
-            opacity: 0.1;
-            mix-blend-mode: overlay;
-        }
-
-        .huge-title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: clamp(80px, 20vw, 220px);
-            font-weight: 900;
-            letter-spacing: -0.06em;
-            line-height: 0.8;
-            text-align: center;
-            z-index: 1;
-            opacity: 0.1;
-            background: linear-gradient(135deg, #fff 30%, rgba(255, 255, 255, 0.4) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .hero-product-image {
-            width: 68%;
-            max-width: 780px;
-            z-index: 2;
-            transform: translateY(40px) rotateX(6deg);
-            filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.5));
-            border-radius: 48px;
-            overflow: hidden;
-            margin: 10px auto 0;
-        }
-
-        .hero-product-image img {
-            width: 100%;
-            display: block;
-        }
-
-        /* ===== ELEVATED FLOATING INFO — MODERN, MINIMAL, PREMIUM ===== */
-        .floating-info {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            margin-top: 60px;
-            z-index: 3;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .stat-card {
-            background: rgba(12, 12, 16, 0.55);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
-            padding: 18px 28px;
-            text-align: center;
-            border: 0.5px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            min-width: 115px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .stat-card:hover {
-            border-color: rgba(255, 255, 255, 0.35);
-            background: rgba(20, 20, 28, 0.8);
-            transform: translateY(-4px);
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            color: white;
-            margin-bottom: 6px;
-        }
-
-        .stat-label {
-            font-size: 9px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-
-        .stat-note {
-            font-size: 10px;
-            color: var(--text-dim);
+        .btn-buy {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 11px 26px;
+            border-radius: 40px;
             font-weight: 400;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
         }
 
-        /* Bento Grid (unchanged core) */
-        .grid-section {
-            padding: 100px 5%;
-            background: #000;
-            position: relative;
-            z-index: 4;
+        .btn-buy:hover {
+            background: #e8e8ed;
+            transform: scale(0.97);
         }
 
-        .bento-canvas {
+        .btn-wish-minimal {
+            background: transparent;
+            color: #ffffff;
+            border: 0.5px solid rgba(255, 255, 255, 0.16);
+            padding: 11px 22px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-wish-minimal:hover {
+            border-color: rgba(255, 77, 77, 0.4);
+            background: rgba(255, 77, 77, 0.04);
+        }
+
+        .btn-wish-minimal.active {
+            border-color: rgba(255, 77, 77, 0.4);
+            background: rgba(255, 77, 77, 0.08);
+        }
+
+        .btn-wish-minimal.active i {
+            color: rgb(255, 77, 77);
+            font-weight: 900;
+        }
+
+        .product-duo {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin: 20px 0 100px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .product-duo {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+
+            .right-details {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+        }
+
+        .image-soft {
+            position: relative;
+            border-radius: 48px;
+            overflow: hidden;
+            background: #050505;
+            aspect-ratio: 1;
+        }
+
+        .image-soft img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .image-soft:hover img {
+            transform: scale(1.02);
+        }
+
+        .right-details {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .details-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .spec-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .spec-row-minimal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+            font-weight: 430;
+        }
+
+        .spec-value {
+            color: #fff;
+            font-weight: 470;
+            letter-spacing: -0.2px;
+        }
+
+        .trust-inline {
+            display: flex;
+            gap: 24px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 450;
+        }
+
+        .trust-inline i {
+            color: var(--accent);
+            font-size: 0.4rem;
+            margin-right: 4px;
+        }
+
+        .feature-wall {
+            margin: 120px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background-color: #181818;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .feature-tile {
+            background: #121212;
+            padding: 48px 32px;
+            transition: 0.2s;
+        }
+
+        .feature-tile:hover {
+            background: #181818;
+        }
+
+        .feature-tile .tile-icon {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .feature-tile h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-tile p {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 800px) {
+            .feature-wall {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-section {
+            margin: 100px 0;
+        }
+
+        .value-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 56px;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 800px) {
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card {
+            background: #121212;
+            border-radius: 28px;
+            padding: 36px 28px;
+            border: 0.5px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .value-card:hover {
+            background: #181818;
+            transform: translateY(-2px);
+        }
+
+        .value-card i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .steps-panel {
+            background: #121212;
+            border-radius: 40px;
+            padding: 56px 48px;
+            margin: 100px 0;
+            border: 0.5px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .steps-panel h3 {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 48px;
+        }
+
+        .steps-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 20px;
         }
 
-        .bento-item {
-            background: #0d0d0d;
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            padding: 50px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        .step-item {
+            flex: 1;
+            text-align: center;
+            min-width: 130px;
         }
 
-        .bento-item:hover {
-            transform: scale(0.98);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .item-1 {
-            grid-column: 1 / 8;
-        }
-
-        .item-2 {
-            grid-column: 8 / 13;
-        }
-
-        .item-3 {
-            grid-column: 1 / 5;
-        }
-
-        .item-4 {
-            grid-column: 5 / 13;
-        }
-
-        .bento-item h3 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 15px;
-        }
-
-        .bento-item p {
-            font-size: 18px;
-            color: var(--text-dim);
-            line-height: 1.5;
-            max-width: 400px;
-        }
-
-        .bento-item .price-badge {
-            margin-top: 24px;
-            display: inline-block;
-            background: #aaa;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #222;
-        }
-
-        .feature-list-bento {
-            margin-top: 20px;
-            list-style: none;
-        }
-
-        .feature-list-bento li {
-            margin-bottom: 12px;
+        .step-num {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 15px;
-            color: var(--text-dim);
-        }
-
-        .feature-list-bento li i {
+            justify-content: center;
+            font-weight: 700;
             color: var(--accent);
-            width: 20px;
+            margin: 0 auto 16px;
         }
 
-        .bg-icon {
-            position: absolute;
-            right: -30px;
-            bottom: -30px;
-            font-size: 200px;
-            opacity: 0.03;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        /* FAQ */
-        .faq-section {
-            max-width: 900px;
+        .faq-module {
+            max-width: 880px;
             margin: 100px auto;
-            padding: 0 5%;
         }
 
-        .faq-section h2 {
+        .faq-module h2 {
             text-align: center;
-            font-size: 2.2rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 500;
             margin-bottom: 48px;
-            letter-spacing: -0.02em;
         }
 
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 24px 0;
+        .faq-list {
+            border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-entry {
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.04);
+            padding: 22px 0;
             cursor: pointer;
         }
 
-        .faq-question {
+        .faq-q {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
-        .faq-answer {
+        .faq-a {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease;
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             line-height: 1.6;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding-top: 16px;
+        .faq-entry.active .faq-a {
+            max-height: 180px;
+            padding-top: 14px;
         }
 
-        .faq-icon {
+        .faq-arrow {
             transition: transform 0.2s;
+            font-size: 0.7rem;
         }
 
-        .faq-item.active .faq-icon {
+        .faq-entry.active .faq-arrow {
             transform: rotate(45deg);
         }
 
-        /* Related */
+        .warranty-banner {
+            background: #121212;
+            border-radius: 48px;
+            padding: 52px 32px;
+            text-align: center;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
         .related-section {
-            padding: 60px 5% 100px;
+            margin: 80px 0 60px;
         }
 
         .related-section h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 500;
             margin-bottom: 32px;
         }
@@ -610,36 +577,32 @@
             }
         }
 
-        .rel-card {
-            background: rgba(255, 255, 255, 0.02);
+        .rel-item {
+            background: #222;
             border-radius: 28px;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
             transition: 0.2s;
+            cursor: pointer;
         }
 
-        .rel-card:hover {
+        .rel-item:hover {
             transform: translateY(-4px);
-            border-color: rgba(161, 161, 161, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .rel-img {
             aspect-ratio: 1;
-            background: #0a0a0a;
+            background: #0d0d0d;
         }
 
         .rel-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.3s;
         }
 
-        .rel-card:hover .rel-img img {
-            transform: scale(1.02);
-        }
-
-        .rel-info {
+        .rel-detail {
             padding: 14px;
             display: flex;
             justify-content: space-between;
@@ -651,161 +614,44 @@
             font-size: 0.85rem;
         }
 
-        .rel-price {
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .rel-old {
-            font-size: 0.7rem;
-            color: #6b7280;
-            text-decoration: line-through;
-            margin-left: 6px;
-        }
-
-        /* CTA */
-        .cta-premium {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: #000;
-            border-top: 1px solid var(--border);
-        }
-
-        .cta-premium h2 {
-            font-size: clamp(40px, 8vw, 100px);
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            margin-bottom: 40px;
-        }
-
-        .buy-trigger {
-            background: #fff;
-            color: #000;
-            padding: 30px 80px;
-            border-radius: 100px;
-            font-size: 22px;
-            font-weight: 700;
-            transition: 0.4s;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .buy-trigger:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
-        }
-
-        .wishlist-btn {
-            margin-top: 24px;
-            background: transparent;
-            border: 1px solid var(--border);
-            padding: 14px 32px;
-            border-radius: 60px;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .wishlist-btn.wish-active i {
-            color: var(--accent);
+        .rel-prices {
+            font-weight: 600;
+            color: #fff;
         }
 
         footer {
             text-align: center;
-            padding: 40px 5%;
-            border-top: 1px solid var(--border);
+            padding: 50px 0 40px;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.04);
             color: var(--text-dim);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
 
-        @media (max-width: 900px) {
-            .bento-canvas {
-                grid-template-columns: 1fr;
-            }
-
-            .item-1,
-            .item-2,
-            .item-3,
-            .item-4 {
-                grid-column: span 1;
-            }
-
-            .huge-title {
-                font-size: 60px;
-                white-space: normal;
-                width: 100%;
-                top: 45%;
-            }
-
-            .floating-info {
-                gap: 10px;
-                margin-top: 50px;
-            }
-
-            .stat-card {
-                padding: 12px 18px;
-                min-width: 90px;
-            }
-
-            .stat-value {
-                font-size: 20px;
-            }
-
-            .bento-item h3 {
-                font-size: 24px;
-            }
-
-            .bento-item p {
-                font-size: 15px;
-            }
-
-            .floating-action {
-                padding: 6px 12px;
-                gap: 10px;
-                bottom: 20px;
-            }
-
-            .hero-product-image {
-                width: 90%;
-                transform: translateY(20px) rotateX(4deg);
-            }
-
-            .hero-main {
-                font-size: 2.5rem;
-            }
+        .error-state {
+            text-align: center;
+            padding: 120px 20px;
+            color: #bbb;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="logo">
             <img src="img/tlogo.png" alt="ToolsSparrow">
             <span class="logo-text">Tools<span>Sparrow</span></span>
         </a>
-
         <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="shop.html" class="nav-link active">Shop</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="product.html" class="nav-link">Product</a></li>
-            <li><a href="product2.html" class="nav-link">Product2</a></li>
+            <!-- <li><a href="product.html" class="nav-link active">Product</a></li> -->
         </ul>
-
         <div class="nav-actions">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" class="search-input" placeholder="Find services..." />
+                <input type="text" class="search-input" placeholder="Find services...">
             </div>
             <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
             <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
@@ -816,255 +662,10 @@
         </div>
     </nav>
 
-    <!-- Floating Action Pill -->
-    <div class="floating-action" id="floatingAction">
-        <div class="product-icon-mini">
-            <img src="img/netflix2.png" alt="Netflix"
-                onerror="this.src='https://placehold.co/28x28/ff2d55/white?text=N'">
-            <span>Netflix</span>
-        </div>
-        <div class="floating-price">
-            <span class="current">₹1,299</span>
-            <span class="old">₹4,999</span>
-        </div>
-        <button class="floating-btn" id="floatingWhatsappBtn"><i class="fab fa-whatsapp"></i> Buy Now</button>
-        <button class="floating-wish" id="floatingWishBtn"><i class="far fa-heart"></i> Save</button>
-    </div>
+    <main class="container" id="productContainer"></main>
+    <footer>© 2026 ToolsSparrow — Premium Digital Subscriptions</footer>
 
-    <div class="hero-bg-treatment"></div>
-
-    <section class="hero-wrap">
-        <!-- Ultra-minimal Apple-style title -->
-        <div class="hero-title-container">
-            <div class="hero-sup">TOOLSSPARROW EXCLUSIVE</div>
-            <h1 class="hero-main">Netflix Premium.</h1>
-            <div class="hero-description">4K HDR · Dolby Atmos · 4 Screens · 365‑Day Warranty</div>
-        </div>
-
-        <div class="hero-product-image">
-            <img src="img/netflix2.png" alt="Netflix Premium"
-                onerror="this.src='https://placehold.co/900x900/111111/ff2d55?text=Netflix+Premium'">
-        </div>
-
-        <!-- Premium floating info — modern card design -->
-        <div class="floating-info">
-            <div class="stat-card">
-                <div class="stat-value">4K HDR</div>
-                <div class="stat-label">Resolution</div>
-                <div class="stat-note">Dolby Vision</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">4</div>
-                <div class="stat-label">Screens</div>
-                <div class="stat-note">Simultaneous</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">365</div>
-                <div class="stat-label">Warranty</div>
-                <div class="stat-note">Days / Full</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">Atmos</div>
-                <div class="stat-label">Audio</div>
-                <div class="stat-note">Immersive</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">6</div>
-                <div class="stat-label">Offline</div>
-                <div class="stat-note">Devices</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Decorative huge background text -->
-    <div class="huge-title">STREAM</div>
-
-    <section class="grid-section">
-        <div class="bento-canvas">
-            <div class="bento-item item-1">
-                <h3>Cinema in your pocket.</h3>
-                <p>Every show. Every movie. In the highest fidelity possible. 4K HDR, Dolby Atmos — no compromises on
-                    bitrate or audio quality.</p>
-                <div class="price-badge">₹1,299 / year</div>
-                <div class="bg-icon">🍿</div>
-            </div>
-            <div class="bento-item item-2">
-                <h3>Everything included.</h3>
-                <div class="feature-list-bento">
-                    <li><i class="fas fa-tv"></i> 4K Ultra HD + HDR10+</li>
-                    <li><i class="fas fa-users"></i> 4 simultaneous screens</li>
-                    <li><i class="fas fa-download"></i> Offline downloads (6 devices)</li>
-                    <li><i class="fas fa-globe"></i> Global access — no VPN</li>
-                </div>
-                <div class="bg-icon">📺</div>
-            </div>
-            <div class="bento-item item-3">
-                <h3>Locked & Private.</h3>
-                <p>Your own profile with a private PIN. Your watch history, recommendations, and "My List" stay for your
-                    eyes only.</p>
-                <div class="bg-icon">🔒</div>
-            </div>
-            <div class="bento-item item-4">
-                <h3>Peace of mind, guaranteed.</h3>
-                <p>The ToolsSparrow warranty ensures that if your access pauses for even a second, we replace it within
-                    2 hours or refund you instantly. We handle the technicals, you handle the popcorn.</p>
-                <div class="feature-list-bento" style="margin-top: 20px;">
-                    <li><i class="fas fa-shield-alt"></i> 12-month replacement warranty</li>
-                    <li><i class="fas fa-bolt"></i> Instant delivery via WhatsApp (5-10 min)</li>
-                    <li><i class="fas fa-headset"></i> 24/7 human support</li>
-                </div>
-                <div class="bg-icon">🛡️</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-section">
-        <h2>Questions. Answered.</h2>
-        <div class="faq-item active">
-            <div class="faq-question"><span>Is this a genuine Netflix Premium account?</span><i
-                    class="fas fa-plus faq-icon"></i></div>
-            <div class="faq-answer">Yes. You receive full premium access (4K, multi-screen, downloads) via our verified
-                shared family plan. Backed by 12-month warranty and 7-day refund policy. Thousands of active users.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><span>How do you ensure trust and security?</span><i
-                    class="fas fa-plus faq-icon"></i></div>
-            <div class="faq-answer">We never ask for your personal password. Your profile is PIN-protected. 5,000+
-                verified customers with 99% satisfaction rate. Payments are collected via WhatsApp for direct support.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><span>Which devices are compatible?</span><i class="fas fa-plus faq-icon"></i>
-            </div>
-            <div class="faq-answer">Every device that supports Netflix: Smart TVs, Apple TV, Firestick, Chromecast, PS5,
-                Xbox, iPhone, iPad, Android, and all web browsers. 4K streaming works on supported devices.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><span>What if the account stops working?</span><i
-                    class="fas fa-plus faq-icon"></i></div>
-            <div class="faq-answer">Immediate replacement within 2 hours through WhatsApp. We provide a fresh profile or
-                full refund if we cannot resolve. Your warranty covers 12 full months from purchase.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question"><span>How fast is delivery after payment?</span><i
-                    class="fas fa-plus faq-icon"></i></div>
-            <div class="faq-answer">Typically 5–10 minutes after payment confirmation on WhatsApp. You receive
-                credentials and a quick setup guide.</div>
-        </div>
-    </section>
-
-    <!-- Related -->
-    <section class="related-section">
-        <h3>You might also like</h3>
-        <div class="related-grid" id="relatedGrid"></div>
-    </section>
-
-    <section class="cta-premium">
-        <h2>Ready for the upgrade?</h2>
-        <button class="buy-trigger" id="ctaWhatsappBtn"><i class="fab fa-whatsapp"></i> Get Instant Access</button>
-        <button class="wishlist-btn" id="ctaWishBtn"><i class="far fa-heart"></i> Add to Wishlist</button>
-        <p style="margin-top: 30px; color: var(--text-dim);">₹1,299 / Year — One time payment. 12-month warranty
-            included.</p>
-    </section>
-
-    <footer>© 2025 ToolsSparrow — premium subscriptions, honest pricing, 24/7 support.</footer>
-
-    <script>
-        const lenis = new Lenis();
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero parallax for product image
-        gsap.to(".hero-product-image", {
-            scrollTrigger: { trigger: ".hero-wrap", start: "top top", end: "bottom center", scrub: 1 },
-            rotateX: 0, scale: 1.12, y: -30, ease: "power1.out"
-        });
-
-        // Decorative huge title fade
-        gsap.to(".huge-title", {
-            scrollTrigger: { trigger: ".hero-wrap", start: "top top", end: "bottom 80%", scrub: true },
-            opacity: 0.02, y: -80
-        });
-
-        // Floating action pill
-        const floatingAction = document.getElementById('floatingAction');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) floatingAction.classList.add('visible');
-            else floatingAction.classList.remove('visible');
-        });
-
-        // Bento reveal
-        gsap.utils.toArray('.bento-item').forEach(item => {
-            gsap.from(item, { scrollTrigger: { trigger: item, start: "top 90%" }, y: 70, opacity: 0, duration: 0.9, ease: "power3.out" });
-        });
-
-        // Related products
-        const relatedProducts = [
-            { name: "Prime Video Premium", price: 999, original: 2999, img: "img/prime.png" },
-            { name: "Sonyliv", price: 799, original: 1499, img: "img/sonyliv.png" },
-            { name: "premiere Pro", price: 1899, original: 3999, img: "img/pr.png" },
-            { name: "adobe illustrator", price: 1999, original: 4999, img: "img/adobe illustrator.png" }
-        ];
-        const relGrid = document.getElementById('relatedGrid');
-        if (relGrid) {
-            relGrid.innerHTML = relatedProducts.map(p => `
-            <div class="rel-card">
-                <div class="rel-img"><img src="${p.img}" onerror="this.src='https://placehold.co/400x400/111/ff2d55?text=${p.name.split(' ')[0]}'" loading="lazy"></div>
-                <div class="rel-info"><span class="rel-name">${p.name}</span><div><span class="rel-price">₹${p.price.toLocaleString()}</span><span class="rel-old">₹${p.original.toLocaleString()}</span></div></div>
-            </div>
-        `).join('');
-        }
-
-        // Wishlist
-        let isWishlisted = localStorage.getItem('netflix_premium_wish') === 'true';
-        function updateAllWishlistUI() {
-            const wishButtons = [document.getElementById('floatingWishBtn'), document.getElementById('ctaWishBtn')];
-            wishButtons.forEach(btn => {
-                if (btn) {
-                    const icon = btn.querySelector('i');
-                    if (isWishlisted) { icon.classList.remove('far'); icon.classList.add('fas'); icon.style.color = '#ff2d55'; btn.classList.add('wish-active'); }
-                    else { icon.classList.remove('fas'); icon.classList.add('far'); icon.style.color = ''; btn.classList.remove('wish-active'); }
-                }
-            });
-        }
-        function animateWishlistIcon(btnElement) { if (btnElement) gsap.to(btnElement.querySelector('i'), { scale: 1.3, duration: 0.15, yoyo: true, repeat: 1 }); }
-        function toggleWishlist(e) {
-            e.preventDefault();
-            isWishlisted = !isWishlisted;
-            localStorage.setItem('netflix_premium_wish', isWishlisted);
-            updateAllWishlistUI();
-            animateWishlistIcon(document.getElementById('floatingWishBtn'));
-            animateWishlistIcon(document.getElementById('ctaWishBtn'));
-            const rect = e.target.closest('button').getBoundingClientRect();
-            const heartFly = document.createElement('i');
-            heartFly.className = 'fas fa-heart';
-            heartFly.style.cssText = `position:fixed; left:${rect.left + rect.width / 2}px; top:${rect.top + rect.height / 2}px; color:#ff2d55; font-size:1.6rem; transform:translate(-50%, -50%) scale(0.2); transition:transform 0.5s cubic-bezier(0.2,1.2,0.4,1), opacity 0.4s; opacity:0.9; z-index:9999; pointer-events:none;`;
-            document.body.appendChild(heartFly);
-            setTimeout(() => { heartFly.style.transform = 'translate(-50%, -50%) scale(1.6)'; heartFly.style.opacity = '0'; }, 10);
-            setTimeout(() => heartFly.remove(), 500);
-        }
-        document.getElementById('floatingWishBtn')?.addEventListener('click', toggleWishlist);
-        document.getElementById('ctaWishBtn')?.addEventListener('click', toggleWishlist);
-        updateAllWishlistUI();
-
-        // WhatsApp
-        function whatsappRedirect() { window.open(`https://wa.me/9023992728?text=${encodeURIComponent("Hello ToolsSparrow! I want to order Netflix Premium 4K plan (₹1299). Please share payment details and warranty info.")}`, '_blank'); }
-        document.getElementById('floatingWhatsappBtn')?.addEventListener('click', whatsappRedirect);
-        document.getElementById('ctaWhatsappBtn')?.addEventListener('click', whatsappRedirect);
-
-        // FAQ toggle
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            item.querySelector('.faq-question')?.addEventListener('click', () => {
-                const active = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!active) item.classList.add('active');
-            });
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => { if (link.getAttribute('href') === 'shop.html') link.classList.add('active'); });
+    <script src="product.js">
     </script>
 </body>
 
