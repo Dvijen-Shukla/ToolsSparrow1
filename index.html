@@ -114,7 +114,8 @@
               </div>
               <div class="line-right">
                 <lottie-player src="json/arrow.json" background="transparent" speed=".4"
-                  style="width: 100%; height: 120px; transform: rotate(-90deg); margin-bottom: 60px; scale: 1.7;" loop autoplay>
+                  style="width: 100%; height: 120px; transform: rotate(-90deg); margin-bottom: 60px; scale: 1.7;" loop
+                  autoplay>
                 </lottie-player>
                 <span>right</span>
               </div>
@@ -124,7 +125,9 @@
                 <span>now on</span>
               </div>
               <div class="line-right">
-                <button class="cta-btn">Toolssparrow</button>
+                <a href="shop.html">
+                  <button class="cta-btn">Toolssparrow</button>
+                </a>
                 <span>only</span>
               </div>
             </div>
@@ -152,8 +155,8 @@
                     <div class="price-comparison">
                       <div class="price-original">₹649</div>
                       <div class="price-toolsparrow">₹199</div>
-                    </div>
-                    <button class="subscribe-button">Get Netflix Premium</button>
+                    </div>            
+                    <button class="subscribe-button" onclick="location.href='product.html?id=prime_premium'">Get Netflix Premium</button>
                   </div>
                 </div>
 
@@ -412,7 +415,7 @@
           </lottie-player>
         </div>
         <div class="card">
-          <h3>Design & Graphics</h3>
+          <h3>Design and Graphics</h3>
           <p>Create, sketch, and design with pro-level tools and intuitive workflows.</p>
           <lottie-player src="json/Graphic Design process.json" background="transparent" speed="1"
             style="width: 100%; height: 200px; margin-top: auto; scale: 1.2;" loop autoplay>
@@ -425,13 +428,13 @@
             style="width: 100%; height: 200px; margin-top: auto; scale: 1.3;" loop autoplay>
           </lottie-player>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <h3>Cloud Storage</h3>
           <p>Safely store and access your data anytime from anywhere in the world.</p>
           <lottie-player src="json/Sync.json" background="transparent" speed=".5"
             style="width: 100%; height: 200px; margin-top: auto; scale: 1.1;" loop autoplay>
           </lottie-player>
-        </div>
+        </div> -->
         <div class="card">
           <h3>Productivity</h3>
           <p>Get more done with tools for focus, scheduling, notes, and collaboration.</p>
@@ -470,50 +473,54 @@
             <img src="img/adobe illustrator.png" alt="AI">
           </div>
 
-          <button class="adb-cta-button">Get All Apps Now</button>
-
+          <a href="product.html?id=adobe_creative_cloud">
+            <button class="adb-cta-button">Get All Apps Now</button>
+          </a>
           <div class="preview" style="background-image: url('img/adb.webp');">
             <div class="gradient-overlay"></div>
           </div>
         </div>
 
         <!-- Amazon Prime Card (Right) -->
-        <div class="m-card right-card prime-card">
-          <div class="top">
-            <img src="img/prime.png" alt="Amazon Prime">
-            <div>
-              <h3>Amazon Prime</h3>
-              <p class="desc">Watch unlimited shows, movies and Originals.</p>
-              <div class="price-tag">$59.99<span>/yr</span></div>
+        <a href="product.html?id=prime_premium" style="text-decoration: none;">
+          <div class="m-card right-card prime-card">
+            <div class="top">
+              <img src="img/prime.png" alt="Amazon Prime">
+              <div>
+                <h3>Amazon Prime</h3>
+                <p class="desc">Watch unlimited shows, movies and Originals.</p>
+                <div class="price-tag">$59.99<span>/yr</span></div>
+              </div>
+            </div>
+            <div class="amz-preview">
+              <div class="tv-wrapper">
+                <img src="img/tv.png" alt="TV Mockup" class="tv-image">
+                <img src="img/amzprm.webp" alt="TV Content" class="screen-content">
+              </div>
             </div>
           </div>
-          <div class="amz-preview">
-            <div class="tv-wrapper">
-              <img src="img/tv.png" alt="TV Mockup" class="tv-image">
-              <img src="img/amzprm.webp" alt="TV Content" class="screen-content">
-            </div>
-          </div>
-        </div>
+        </a>
       </div>
 
       <!-- Second Row -->
       <div class="row">
         <!-- ChatGPT Card (Left) -->
-        <div class="m-card right-card gpt-card">
-          <div class="top">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT+">
-            <div>
-              <h3>ChatGPT+</h3>
-              <p class="desc">Generate AI responses, images, code & more with GPT-4.</p>
-              <div class="price-tag">$20<span>/mo</span></div>
+        <a href="product.html?id=chatgpt_plus" style="text-decoration: none;">
+          <div class="m-card right-card gpt-card">
+            <div class="top">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT+">
+              <div>
+                <h3>ChatGPT+</h3>
+                <p class="desc">Generate AI responses, images, code & more with GPT-4.</p>
+                <div class="price-tag">$20<span>/mo</span></div>
+              </div>
+            </div>
+
+            <div class="chatgpt-ui-preview">
+              <img src="img/gpt1.png" style="border-radius: 7px;" alt="ChatGPT Image Generation UI">
             </div>
           </div>
-
-          <div class="chatgpt-ui-preview">
-            <img src="img/gpt1.png" style="border-radius: 7px;" alt="ChatGPT Image Generation UI">
-          </div>
-        </div>
-
+        </a>
 
 
         <!-- Microsoft 365 Card (replacing Figma) -->
@@ -535,8 +542,9 @@
             <img src="img/onedrive.png" alt="OneDrive">
           </div>
 
-          <button class="adb-cta-button ms365-button">Get Microsoft 365</button>
-
+          <a href="product.html?id=microsoft_365">
+            <button class="adb-cta-button ms365-button">Get Microsoft 365</button>
+          </a>
           <div class="preview" style="background-image: url('img/micro2.png');">
             <div class="gradient-overlay"></div>
           </div>
@@ -565,78 +573,78 @@
           <div class="product-slider-track" id="tools-slider">
 
             <!-- Example Card -->
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=chatgpt_plus'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Artificial Intelligence</div>
+                <h3>ChatGPT Plus</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/chatgpt-logo.jpg" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="1999">₹1999</span>
+                <span class="original-price" data-price="2499">₹2499</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?id=elevenlabs_private'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Artificial Intelligence</div>
+                <h3>Eleven Labs Private</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/elevenlabs-logo.png" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="799">₹799</span>
+                <span class="original-price" data-price="999">₹999</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?id=autodesk'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Design & Graphics</div>
-                <h3>Adobe Illustrator</h3>
+                <h3>Autodesk</h3>
               </div>
               <div class="product-wrapper">
-                <img src="img/figmaproduct.png" class="product-image" alt="Illustrator">
+                <img src="img/autodesk-logo.jpeg" class="product-image" alt="Illustrator">
               </div>
               <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
+                <span class="current-price" data-price="1299">₹1299</span>
+                <span class="original-price" data-price="1599">₹1599</span>
+              </div>
+            </div>
+
+            <div class="product-card" onclick="location.href='product.html?id=capcut_pro'">
+              <div class="discount-badge"></div>
+              <div class="card-header">
+                <div class="category-label">Design & Graphics</div>
+                <h3>Capcut Pro</h3>
+              </div>
+              <div class="product-wrapper">
+                <img src="img/capcut-logo.jpeg" class="product-image" alt="Illustrator">
+              </div>
+              <div class="product-price-container">
+                <span class="current-price" data-price="1499">₹1499</span>
                 <span class="original-price" data-price="1999">₹1999</span>
               </div>
             </div>
 
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=adobe_creative_cloud'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Design & Graphics</div>
-                <h3>Adobe Illustrator</h3>
+                <h3>Adobe Creative Cloud</h3>
               </div>
               <div class="product-wrapper">
-                <img src="img/perplexity.png" class="product-image" alt="Illustrator">
+                <img src="img/adobe creative cloud.png" class="product-image" alt="Illustrator">
               </div>
               <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="1999">₹1999</span>
-              </div>
-            </div>
-
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
-              <div class="discount-badge"></div>
-              <div class="card-header">
-                <div class="category-label">Design & Graphics</div>
-                <h3>Adobe Illustrator</h3>
-              </div>
-              <div class="product-wrapper">
-                <img src="img/drive.png" class="product-image" alt="Illustrator">
-              </div>
-              <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="1999">₹1999</span>
-              </div>
-            </div>
-
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
-              <div class="discount-badge"></div>
-              <div class="card-header">
-                <div class="category-label">Design & Graphics</div>
-                <h3>Adobe Illustrator</h3>
-              </div>
-              <div class="product-wrapper">
-                <img src="img/figma.png" class="product-image" alt="Illustrator">
-              </div>
-              <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="1999">₹1999</span>
-              </div>
-            </div>
-
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
-              <div class="discount-badge"></div>
-              <div class="card-header">
-                <div class="category-label">Design & Graphics</div>
-                <h3>Adobe Illustrator</h3>
-              </div>
-              <div class="product-wrapper">
-                <img src="img/adobe.png" class="product-image" alt="Illustrator">
-              </div>
-              <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="1999">₹1999</span>
+                <span class="current-price" data-price="1099">₹1099</span>
+                <span class="original-price" data-price="1399">₹1399</span>
               </div>
             </div>
 
@@ -647,7 +655,7 @@
         <div class="product-slider-container">
           <div class="product-slider-track" id="ott-slider">
 
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=netflix_premium'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Entertainment</div>
@@ -657,53 +665,53 @@
                 <img src="img/netflix2.png" class="product-image" alt="Netflix">
               </div>
               <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="799">₹799</span>
+                <span class="current-price" data-price="3799">₹3799</span>
+                <span class="original-price" data-price="4999">₹4999</span>
               </div>
             </div>
 
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=prime_premium'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Entertainment</div>
-                <h3>Netflix Premium</h3>
+                <h3>Prime Video</h3>
               </div>
               <div class="product-wrapper">
                 <img src="img/prime.png" class="product-image" alt="Netflix">
               </div>
               <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="799">₹799</span>
+                <span class="current-price" data-price="899">₹899</span>
+                <span class="original-price" data-price="1299">₹1299</span>
               </div>
             </div>
 
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=sonyliv_premium'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Entertainment</div>
-                <h3>Netflix Premium</h3>
+                <h3>SonyLiv</h3>
               </div>
               <div class="product-wrapper">
                 <img src="img/sonyliv.png" class="product-image" alt="Netflix">
               </div>
               <div class="product-price-container">
                 <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="799">₹799</span>
+                <span class="original-price" data-price="799">₹999</span>
               </div>
             </div>
 
-            <div class="product-card" onclick="location.href='add-to-cart.html'">
+            <div class="product-card" onclick="location.href='product.html?id=zee5_premium'">
               <div class="discount-badge"></div>
               <div class="card-header">
                 <div class="category-label">Entertainment</div>
-                <h3>Netflix Premium</h3>
+                <h3>Zee5</h3>
               </div>
               <div class="product-wrapper">
                 <img src="img/Zee5.png" class="product-image" alt="Netflix">
               </div>
               <div class="product-price-container">
-                <span class="current-price" data-price="499">₹499</span>
-                <span class="original-price" data-price="799">₹799</span>
+                <span class="current-price" data-price="3499">₹3499</span>
+                <span class="original-price" data-price="4999">₹4999</span>
               </div>
             </div>
 
@@ -711,7 +719,7 @@
 
             <!-- Repeat your OTT cards... -->
 
-            <div class="product-card explore-card" onclick="location.href='explore-all.html'">
+            <div class="product-card explore-card" onclick="location.href='shop.html'">
               <div class="card-header exp-header">
                 <div class="category-label">Discover</div>
                 <h3>Explore All Products</h3>
