@@ -16,32 +16,73 @@ navLinks.forEach(link => {
 });
 
 
-// ================= CATEGORY SLIDER =================
+// ================= CATEGORY SLIDER WITH SHOP NAVIGATION =================
 document.addEventListener('DOMContentLoaded', () => {
-  const slider = document.getElementById('slider');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const cards = document.querySelectorAll('.card');
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cards = document.querySelectorAll('.card');
 
-  if (!slider || cards.length === 0) return;
+    if (!slider || cards.length === 0) return;
 
-  const cardGap = 20;
-  const cardWidth = cards[0].offsetWidth + cardGap;
-  let scrollAmount = 0;
+    const cardGap = 20;
+    const cardWidth = cards[0]?.offsetWidth + cardGap || 300;
+    let scrollAmount = 0;
 
-  gsap.registerPlugin(ScrollToPlugin);
+    if (window.gsap && window.ScrollToPlugin) {
+        gsap.registerPlugin(ScrollToPlugin);
+    }
 
-  function scrollTo(direction) {
-    scrollAmount = slider.scrollLeft + direction * cardWidth;
-    gsap.to(slider, {
-      scrollTo: { x: scrollAmount },
-      duration: 1.2,
-      ease: 'power3.out'
+    function scrollTo(direction) {
+        scrollAmount = slider.scrollLeft + direction * cardWidth;
+        if (window.gsap) {
+            gsap.to(slider, {
+                scrollTo: { x: scrollAmount },
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+        } else {
+            slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    prevBtn?.addEventListener('click', () => scrollTo(-1));
+    nextBtn?.addEventListener('click', () => scrollTo(1));
+
+    // ========== CATEGORY CARD CLICK HANDLER ==========
+    const categoryMapping = {
+        "Artificial Intelligence": "Artificial Intelligence",
+        "Entertainment": "Entertainment",
+        "Design and Graphics": "Design and Graphics",
+        "Skill Development": "Skill Development",
+        "Cloud Storage": "Cloud Storage",
+        "Productivity": "Productivity"
+    };
+
+    cards.forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const titleElement = card.querySelector('h3');
+            if (!titleElement) return;
+            
+            const cardTitle = titleElement.innerText.trim();
+            const category = categoryMapping[cardTitle];
+            
+            if (category) {
+                // Add a loading/transition class for smooth effect
+                document.body.style.opacity = '0.7';
+                document.body.style.transition = 'opacity 0.3s ease';
+                
+                // Store the selected category in sessionStorage
+                sessionStorage.setItem('preselectedCategory', category);
+                
+                // Redirect to shop page
+                setTimeout(() => {
+                    window.location.href = 'shop.html';
+                }, 150);
+            }
+        });
     });
-  }
-
-  prevBtn?.addEventListener('click', () => scrollTo(-1));
-  nextBtn?.addEventListener('click', () => scrollTo(1));
 });
 
 
