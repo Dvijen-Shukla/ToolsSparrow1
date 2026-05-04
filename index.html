@@ -67,28 +67,63 @@
 
 <body>
   <div class="smooth-scroll">
-    <!-- Navbar -->
+
+
     <nav class="navbar">
       <a href="index.html" class="logo">
-        <img src="img/tlogo.png  " alt="">
+        <img src="img/tlogo.png" alt="Logo">
         <span class="logo-text">Tools<span>Sparrow</span></span>
       </a>
-      <ul class="nav-links">
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
       </ul>
 
       <div class="nav-actions">
-        <div class="search-container">
-          <i class="fas fa-search"></i>
-          <input type="text" class="search-input" placeholder="Find services..." />
+        <!-- Search Container -->
+        <div class="search-container" id="searchWrapper">
+          <button class="search-toggle-btn" id="searchToggle">
+            <i class="fas fa-search"></i>
+          </button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search services..." />
         </div>
-        <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
-        <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
-        <a href="#" class="nav-icon"><i class="fas fa-shopping-cart"></i><span class="badge">3</span></a>
+
+        <!-- Icons group -->
+        <div class="icon-group">
+          <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+          <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+          <a href="#" class="nav-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge">3</span>
+          </a>
+        </div>
+
+        <button class="hamburger" id="hamburgerBtn">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Minimal Fullscreen Menu -->
+    <div class="menu-overlay" id="menuOverlay">
+      <!-- Close Button for Mobile Menu -->
+      <button class="menu-close-btn" id="menuClose">✕</button>
+
+      <ul class="overlay-links">
+        <li style="--i:1"><a href="index.html">Home</a></li>
+        <li style="--i:2"><a href="shop.html">Shop</a></li>
+        <li style="--i:3"><a href="about.html">About</a></li>
+      </ul>
+    </div>
+
+
+
+
 
     <!-- Hero Section with Parallax -->
     <div class="hero-container">
@@ -146,17 +181,18 @@
                     <p class="app-subtitle">The ultimate streaming experience</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">4K Ultra HD quality on all devices</div>
-                    <div class="app-benefit">Watch on 4 screens simultaneously</div>
-                    <div class="app-benefit">Unlimited movies, TV shows, and more</div>
-                    <div class="app-benefit">Download for offline viewing</div>
+                    <div class="app-benefit">4K streaming</div>
+                    <div class="app-benefit">4 screens</div>
+                    <div class="app-benefit">Offline downloads</div>
+                    <div class="app-benefit">Unlimited content</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
                       <div class="price-original">₹649</div>
                       <div class="price-toolsparrow">₹199</div>
-                    </div>            
-                    <button class="subscribe-button" onclick="location.href='product.html?id=prime_premium'">Get Netflix Premium</button>
+                    </div>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=netflix_premium'">Get
+                      Netflix Premium</button>
                   </div>
                 </div>
 
@@ -167,17 +203,18 @@
                     <p class="app-subtitle">Most advanced AI assistant</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Access to GPT-4 Turbo model</div>
-                    <div class="app-benefit">32k context length for long conversations</div>
-                    <div class="app-benefit">Advanced data analysis capabilities</div>
-                    <div class="app-benefit">Browse with Bing for latest info</div>
+                    <div class="app-benefit">GPT-4 access</div>
+                    <div class="app-benefit">Faster replies</div>
+                    <div class="app-benefit">Priority features</div>
+                    <div class="app-benefit">File analysis</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow">$8</div>
+                      <div class="price-original">₹2499</div>
+                      <div class="price-toolsparrow">₹1999</div>
                     </div>
-                    <button class="subscribe-button">Get ChatGPT Plus</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=chatgpt_plus'">Get ChatGPT
+                      Plus</button>
                   </div>
                 </div>
 
@@ -188,17 +225,18 @@
                     <p class="app-subtitle">All creative tools in one place</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">All 20+ Adobe creative applications</div>
-                    <div class="app-benefit">100GB of cloud storage</div>
-                    <div class="app-benefit">Premium fonts and templates</div>
-                    <div class="app-benefit">Behance ProSite portfolio</div>
+                    <div class="app-benefit">20+ apps</div>
+                    <div class="app-benefit">Premium tools</div>
+                    <div class="app-benefit">100GB storage</div>
+                    <div class="app-benefit">Creative assets</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
                       <div class="price-original">₹3,232</div>
                       <div class="price-toolsparrow">₹999</div>
                     </div>
-                    <button class="subscribe-button">Get Adobe CC</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=adobe_creative_cloud'">Get
+                      Adobe CC</button>
                   </div>
                 </div>
 
@@ -209,17 +247,18 @@
                     <p class="app-subtitle">Collaborative design without limits</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Unlimited version history</div>
-                    <div class="app-benefit">Advanced prototyping & animations</div>
-                    <div class="app-benefit">Unlimited projects and editors</div>
-                    <div class="app-benefit">Access to Dev Mode for developers</div>
+                    <div class="app-benefit">Unlimited files</div>
+                    <div class="app-benefit">Advanced prototype</div>
+                    <div class="app-benefit">Dev mode</div>
+                    <div class="app-benefit">Team collaboration</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow">$8</div>
+                      <div class="price-original">₹1699</div>
+                      <div class="price-toolsparrow">₹1299</div>
                     </div>
-                    <button class="subscribe-button">Get Figma Pro</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=figma_edu_private'">Get
+                      Figma Pro</button>
                   </div>
                 </div>
 
@@ -232,66 +271,68 @@
                     <p class="app-subtitle">Stream exclusive shows & live sports</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Live streaming of cricket & football</div>
-                    <div class="app-benefit">Ad-free premium content</div>
-                    <div class="app-benefit">SonyLiv Originals and latest TV episodes</div>
-                    <div class="app-benefit">Watch on multiple devices</div>
+                    <div class="app-benefit">Live sports</div>
+                    <div class="app-benefit">Premium shows</div>
+                    <div class="app-benefit">Ad-free viewing</div>
+                    <div class="app-benefit">Multi-device access</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                      <div class="price-original">₹999</div>
+                      <div class="price-toolsparrow" data-price="₹499">₹499</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get SonyLiv Premium</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=sonyliv_premium'">Get
+                      SonyLiv Premium</button>
                   </div>
                 </div>
 
                 <!-- Gemini -->
                 <div class="app-slide">
                   <div class="app-header">
-                    <img src="img/gemini.png" alt="Gemini" class="app-logo">
-                    <h2 class="app-title">Gemini</h2>
-                    <p class="app-subtitle">AI assistant by Google for productivity</p>
+                    <img src="img/Microsoft365.png" alt="Gemini" class="app-logo">
+                    <h2 class="app-title">Microsoft 365</h2>
+                    <p class="app-subtitle">Word, Excel, PowerPoint, OneDrive, and Teams</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Advanced Gemini tools</div>
-                    <div class="app-benefit">Docs & Gmail integration</div>
-                    <div class="app-benefit">Longer, smarter replies</div>
-                    <div class="app-benefit">Access new features first</div>
+                    <div class="app-benefit">Office apps</div>
+                    <div class="app-benefit">1TB cloud</div>
+                    <div class="app-benefit">Premium access</div>
+                    <div class="app-benefit">Security tools</div>
                   </div>
-
-
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                      <div class="price-original">₹2999</div>
+                      <div class="price-toolsparrow" data-price="₹1799">₹1799</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get Gemini Advanced</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=microsoft_365'">Get
+                      Microsoft 365</button>
                   </div>
                 </div>
 
                 <!-- Perplexity AI -->
                 <div class="app-slide">
                   <div class="app-header">
-                    <img src="img/perplexity.png" alt="Perplexity AI" class="app-logo">
-                    <h2 class="app-title">Perplexity AI</h2>
-                    <p class="app-subtitle">Smarter research with citations</p>
+                    <img src="img/canva.png" alt="Canva Pro" class="app-logo">
+                    <h2 class="app-title">Canva Pro</h2>
+                    <p class="app-subtitle">Professional design tools, millions of templates</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Unlimited Pro searches</div>
-                    <div class="app-benefit">GPT-4 powered responses</div>
-                    <div class="app-benefit">File & link uploads for analysis</div>
-                    <div class="app-benefit">Priority access to new AI tools</div>
+                    <div class="app-benefit">Premium templates</div>
+                    <div class="app-benefit">Background remover</div>
+                    <div class="app-benefit">Magic resize</div>
+                    <div class="app-benefit">Brand kit</div>
                   </div>
+
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                      <div class="price-original">₹2,999</div>
+                      <div class="price-toolsparrow" data-price="₹1,499">₹1,499</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get Perplexity Pro</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=canva_pro'">Get Canva
+                      Pro</button>
                   </div>
                 </div>
 
@@ -303,10 +344,10 @@
                     <p class="app-subtitle">Entertainment, shopping & more</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Free & fast delivery on orders</div>
-                    <div class="app-benefit">Unlimited Prime Video access</div>
-                    <div class="app-benefit">Ad-free Amazon Music</div>
-                    <div class="app-benefit">Prime Gaming & exclusive deals</div>
+                    <div class="app-benefit">Fast delivery</div>
+                    <div class="app-benefit">Prime video</div>
+                    <div class="app-benefit">Music access</div>
+                    <div class="app-benefit">Exclusive deals</div>
                   </div>
                   <div class="price-container">
                     <div class="price-comparison">
@@ -314,53 +355,60 @@
                       <div class="price-toolsparrow" data-price="$8">$8</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get Prime Membership</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=figma_edu_private'">Get
+                      Prime Membership</button>
                   </div>
                 </div>
 
-                <!-- Zee5 -->
+
                 <div class="app-slide">
                   <div class="app-header">
-                    <img src="img/Zee5.png" alt="Zee5" class="app-logo">
-                    <h2 class="app-title">Zee5</h2>
-                    <p class="app-subtitle">Unlimited entertainment in your language</p>
+                    <img src="img/autodesk-logo.jpeg" alt="Zee5" class="app-logo">
+                    <h2 class="app-title">Autodesk</h2>
+                    <p class="app-subtitle">Professional 3D design, engineering, and architectural software.</p>
                   </div>
                   <div class="app-benefits">
-                    <div class="app-benefit">Ad-free streaming of all shows</div>
-                    <div class="app-benefit">Latest blockbuster movies</div>
-                    <div class="app-benefit">Zee5 Originals & web series</div>
-                    <div class="app-benefit">Watch in 12+ Indian languages</div>
+                    <div class="app-benefit">CAD tools</div>
+                    <div class="app-benefit">3D modeling</div>
+                    <div class="app-benefit">Cloud access</div>
+                    <div class="app-benefit">Pro workflows</div>
                   </div>
+
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                      <div class="price-original">₹1599</div>
+                      <div class="price-toolsparrow" data-price="₹1299">$1299</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get Zee5 Premium</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=autodesk'">Get
+                      Autodesk</button>
                   </div>
                 </div>
 
-                <!-- Google Drive -->
+                <!-- YouTube Premium -->
                 <div class="app-slide">
                   <div class="app-header">
-                    <img src="img/drive.png" alt="Google Drive" class="app-logo">
-                    <h2 class="app-title">Google Drive</h2>
-                    <p class="app-subtitle">Secure cloud storage for your files</p>
+                    <img src="img/youtube.jpeg" alt="YouTube Premium" class="app-logo">
+                    <h2 class="app-title">YouTube Premium</h2>
+                    <p class="app-subtitle">Enjoy uninterrupted videos, offline access, and premium music streaming.</p>
                   </div>
+
                   <div class="app-benefits">
-                    <div class="app-benefit">100GB+ cloud storage</div>
-                    <div class="app-benefit">Access across all devices</div>
-                    <div class="app-benefit">Google One benefits & support</div>
-                    <div class="app-benefit">Family sharing up to 5 people</div>
+                    <div class="app-benefit">Ad-free videos</div>
+                    <div class="app-benefit">Background play</div>
+                    <div class="app-benefit">Offline mode</div>
+                    <div class="app-benefit">Music premium</div>
                   </div>
+
                   <div class="price-container">
                     <div class="price-comparison">
-                      <div class="price-original">$20</div>
-                      <div class="price-toolsparrow" data-price="$8">$8</div>
+                      <div class="price-original">₹4,500</div>
+                      <div class="price-toolsparrow" data-price="₹3,599">₹3,599</div>
                     </div>
                     <!-- <div class="price-period">per month (billed monthly)</div> -->
-                    <button class="subscribe-button">Get Google One</button>
+                    <button class="subscribe-button" onclick="location.href='product.html?id=youtube_premium'">
+                      Get YouTube Premium
+                    </button>
                   </div>
                 </div>
 
