@@ -351,7 +351,8 @@ body {
   width: 100%;
   will-change: transform;
   z-index: 10;
-  gap: clamp(0.5rem, 2vh, 1rem);
+  gap: clamp(0.3rem, 1.5vh, 0.8rem);
+  /* TIGHTER gaps */
 }
 
 .line {
@@ -394,6 +395,29 @@ body {
   will-change: transform;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.line-right lottie-player {
+  width: 80px !important;
+  height: 80px !important;
+  margin-bottom: 20px;
+  scale: 2.2;
+}
+
+.line,
+.cta-line,
+.line-left,
+.line-right,
+.phone-parallax-container {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Smooth transitions everywhere */
+* {
+  will-change: auto;
 }
 
 .inline-imgs {
@@ -779,74 +803,156 @@ body {
 }
 
 /* ============================================================
-   YOUR ORIGINAL MEDIA QUERIES — 100% UNCHANGED
+   PHONE CONTENT RESPONSIVE - REPLACE ALL MEDIA QUERIES BELOW
    ============================================================ */
-@media (max-width: 1024px) {
 
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .text-content {
+    gap: 0.6rem;
+  }
+
+  .line-right lottie-player {
+    width: 70px !important;
+    height: 70px !important;
+    scale: 2;
+  }
+
+  /* Your existing tablet styles + phone content... */
   .phone-parallax-container {
     bottom: calc(-20px + 4vh);
   }
 
   .line,
   .cta-line {
-    font-size: 5rem;
+    font-size: 3.8rem;
   }
 
   .inline-imgs {
-    width: 150px;
-    height: 55px;
+    width: 130px;
+    height: 52px;
   }
 
   .inline-imgs img,
   .more-box {
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
   }
 
   .inline-imgs img:nth-child(2) {
-    left: 38px;
+    left: 34px;
   }
 
   .more-box {
-    left: 76px;
-    font-size: 0.85rem;
+    left: 68px;
+    font-size: 0.82rem;
   }
 
   .cta-btn {
-    padding: 1.2rem 1.2rem;
-    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    font-size: 1.1rem;
   }
 
   .phone-showcase {
-    max-width: 320px;
+    max-width: 290px;
   }
 
   .phone-mockup {
-    height: 640px;
+    height: 580px;
+  }
+
+  /* NEW: PERFECT RESPONSIVE PHONE CONTENT */
+  .app-slide {
+    padding: 2.8rem 2.2rem !important;
+  }
+
+  .app-logo {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 0.4rem;
+  }
+
+  .app-title {
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .app-benefits {
+    margin: 3.5rem 0;
+    gap: 0.75rem;
+  }
+
+  .app-benefit {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .price-comparison {
+    gap: 0.9rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .price-toolsparrow {
+    font-size: 1.25rem;
+    padding: 1.8px 9px;
+  }
+
+  .subscribe-button {
+    width: 82%;
+    padding: 0.65rem;
+    font-size: 0.95rem;
+    max-width: 225px;
+  }
+
+  .phone-navigation {
+    width: 88%;
+    padding: 11px 18px;
+  }
+
+  .nav-button {
+    width: 34px;
+    height: 34px;
   }
 }
 
+/* Mobile: <768px */
 @media (max-width: 768px) {
   .hero-content {
-    padding-bottom: max(8vh, 80px);
+    padding-bottom: max(8vh, 60px);
+  }
+
+  .text-content {
+    gap: 0.4rem;
+  }
+
+  /* PERFECT mobile spacing */
+  .line-right lottie-player {
+    width: 65px !important;
+    height: 65px !important;
+    margin-bottom: 15px;
+    scale: 2;
   }
 
   .line,
   .cta-line {
-    font-size: 2.8rem;
+    font-size: 3.8rem;
     white-space: nowrap;
   }
 
   .inline-imgs {
-    width: 110px;
-    height: 40px;
+    width: 130px;
+    height: 52px;
   }
 
   .inline-imgs img,
   .more-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
   }
 
   .inline-imgs img:nth-child(2) {
@@ -854,21 +960,15 @@ body {
   }
 
   .more-box {
-    left: 56px;
-    font-size: 0.65rem;
+    left: 58px;
+    font-size: .85rem;
   }
 
   .cta-btn {
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
+    padding: 1rem 1rem;
+    font-size: 1.2rem;
     margin-left: 8px;
     margin-top: 8px;
-  }
-
-  .line-right lottie-player {
-    width: 45px !important;
-    height: 45px !important;
-    margin-bottom: 15px;
   }
 
   .phone-parallax-container {
@@ -883,57 +983,98 @@ body {
     height: 520px;
   }
 
+  /* NEW: RESPONSIVE PHONE CONTENT */
   .app-slide {
-    padding: 1.8rem;
+    padding: 2.2rem 1.6rem !important;
   }
 
   .app-logo {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.35rem;
   }
 
   .app-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    margin-bottom: 0.18rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .app-benefits {
+    margin: 3rem 0;
+    gap: 0.7rem;
   }
 
   .app-benefit {
-    font-size: 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .price-comparison {
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
   }
 
   .price-toolsparrow {
-    font-size: 1rem;
+    font-size: 1.15rem;
+    padding: 1.6px 8px;
+  }
+
+  .subscribe-button {
+    width: 84%;
+    padding: 0.62rem;
+    font-size: 0.92rem;
+    max-width: 210px;
+  }
+
+  .phone-navigation {
+    width: 89%;
+    padding: 10px 16px;
+  }
+
+  .nav-button {
+    width: 32px;
+    height: 32px;
   }
 }
 
-@media (max-height: 700px) {
-  .hero-content {
-    padding-bottom: max(10vh, 90px);
-  }
-
-  .phone-parallax-container {
-    bottom: -80px;
-  }
-}
-
+/* Small Mobile: <550px */
 @media (max-width: 550px) {
   .phone-parallax-container {
+    height: auto;
+    margin-bottom: 80px;
     bottom: calc(-20px - 5vh);
+  }
+
+  .text-content {
+    gap: 0.3rem;
+  }
+
+  /* TIGHT spacing for small screens */
+  .line-right lottie-player {
+    width: 55px !important;
+    height: 55px !important;
+    margin-bottom: 12px;
+    scale: 2;
   }
 
   .line,
   .cta-line {
-    font-size: 1.8rem;
+    font-size: 2.6rem;
   }
 
   .inline-imgs {
-    width: 85px;
+    width: 100px;
     height: 32px;
   }
 
   .inline-imgs img,
   .more-box {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
   }
 
@@ -942,18 +1083,13 @@ body {
   }
 
   .more-box {
-    left: 44px;
-    font-size: 0.5rem;
-  }
-
-  .cta-btn {
-    padding: 0.5rem 0.7rem;
+    left: 45px;
     font-size: 0.7rem;
   }
 
-  .line-right lottie-player {
-    width: 35px !important;
-    height: 35px !important;
+  .cta-btn {
+    padding: .85rem 0.7rem;
+    font-size: .95rem;
   }
 
   .phone-showcase {
@@ -963,24 +1099,85 @@ body {
   .phone-mockup {
     height: 460px;
   }
+
+  /* NEW: SMALL MOBILE RESPONSIVE */
+  .app-slide {
+    padding: 1.9rem 1.4rem !important;
+  }
+
+  .app-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .app-title {
+    font-size: 0.98rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.62rem;
+  }
+
+  .app-benefits {
+    margin: 2.6rem 0;
+    gap: 0.65rem;
+  }
+
+  .app-benefit {
+    font-size: 0.78rem;
+  }
+
+  .price-original {
+    font-size: 0.85rem;
+  }
+
+  .price-toolsparrow {
+    font-size: 0.95rem;
+    padding: 1.4px 7px;
+  }
+
+  .subscribe-button {
+    width: 86%;
+    padding: 0.48rem;
+    font-size: 0.75rem;
+    max-width: 195px;
+  }
+
+  .phone-navigation {
+    width: 90%;
+    padding: 9px 14px;
+  }
 }
 
+/* Extra Small: <400px */
 @media (max-width: 400px) {
+  
+  .line-right lottie-player {
+    width: 55px !important;
+    height: 55px !important;
+    margin-bottom: 12px;
+    scale: 1.6;
+  }
 
   .line,
   .cta-line {
-    font-size: 1.4rem;
+    font-size: 2rem;
+  }
+
+  .text-content {
+    gap: 0.1rem;
   }
 
   .inline-imgs {
+    right: 10px;
     width: 70px;
-    height: 28px;
+    height: 34px;
   }
 
   .inline-imgs img,
   .more-box {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
   }
 
   .inline-imgs img:nth-child(2) {
@@ -988,17 +1185,93 @@ body {
   }
 
   .more-box {
-    left: 36px;
+    left: 34px;
     font-size: 0.42rem;
   }
 
   .cta-btn {
-    padding: 0.4rem 0.55rem;
-    font-size: 0.6rem;
+    padding: 0.75rem 0.55rem;
+    font-size: 0.85rem;
+  }
+
+  .phone-showcase {
+    max-width: 210px;
+  }
+
+  .phone-mockup {
+    height: 420px;
+  }
+
+  /* NEW: EXTRA SMALL RESPONSIVE */
+  .app-slide {
+    padding: 1.6rem 1.2rem !important;
+  }
+
+  .app-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-title {
+    font-size: 0.92rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .app-benefits {
+    margin: 2.3rem 0;
+    gap: 0.6rem;
+  }
+
+  .app-benefit {
+    font-size: 0.68rem;
+  }
+
+  .price-original {
+    font-size: 0.75rem;
+  }
+
+  .price-toolsparrow {
+    font-size: 0.9rem;
+    padding: 1.2px 6px;
+  }
+
+  .subscribe-button {
+    width: 88%;
+    padding: 0.35rem;
+    font-size: 0.7rem;
+    max-width: 180px;
+  }
+
+  .phone-navigation {
+    width: 91%;
+    padding: 8px 12px;
+  }
+
+  .nav-button {
+    width: 30px;
+    height: 30px;
   }
 }
 
+/* Low Height Fix */
+@media (max-height: 700px) {
+  .hero-content {
+    padding-bottom: max(10vh, 90px);
+  }
 
+  .phone-parallax-container {
+    bottom: -80px;
+  }
+
+  .app-benefits {
+    margin: 2rem 0 !important;
+  }
+}
+
+/* Hardware Acceleration */
 @media (max-width: 768px) {
 
   .phone-parallax-container,
@@ -1007,18 +1280,15 @@ body {
   .line-right,
   .text-content {
     transform: translateZ(0);
-    
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
-  @media (max-width: 768px) {
-    .phone-parallax-container {
-      bottom: 0 !important;
-      transition: bottom 0.2s;
-    }
+
+  .phone-parallax-container {
+    bottom: 0 !important;
+    transition: bottom 0.2s;
   }
 }
-
 
 
 
@@ -1035,53 +1305,38 @@ body {
 
 
 /* Apple Store-style header */
+
 .section-header {
   padding: 0 7rem;
-  margin-top: 15vh;
-  /* margin-bottom: 34px; */
+  /* margin-bottom: 2rem; */
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px 0;
+  max-width: 100%;
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
   color: #fff;
-  letter-spacing: .3px;
   line-height: 1.1;
-  white-space: nowrap;
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 500;
   color: #6e6e6e;
-  line-height: 1.1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.35;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
 }
-
-@media (max-width: 768px) {
-  .section-header {
-    padding: 0 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .section-title,
-  .section-subtitle {
-    font-size: 24px;
-    white-space: normal;
-  }
-}
-
-
 
 .slider-container {
   max-width: 100%;
+  margin-top: 80px;
 }
 
 .slider-track {
@@ -1093,7 +1348,6 @@ body {
   scroll-behavior: smooth;
   padding-bottom: 40px;
   padding-top: 40px;
-  /* scroll-snap-type: x mandatory; */
 }
 
 
@@ -1178,6 +1432,74 @@ lottie-player {
 
 
 
+/* ============================================================
+   RESPONSIVE BREAKPOINTS - PROFESSIONAL PERFECTION
+   ============================================================ */
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+  .section-header {
+    flex-direction: row;
+    align-items: end;
+    gap: 12px;
+    padding: 0 7rem;
+  }
+
+  .section-subtitle {
+    white-space: nowrap;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) and (max-width: 1399px) {
+  .section-header {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+    padding: 0 8rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-header {
+    flex-direction: column;
+    padding: 0 7rem;
+    gap: 6px 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section-header {
+    padding: 0 2rem;
+    gap: 6px 0;
+    margin-top: 10vh;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .section-subtitle {
+    font-size: clamp(1rem, 5.5vw, 1.3rem);
+    line-height: 1.4;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .section-header {
+    padding: 0 1.5rem;
+    gap: 5px 0;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+}
 
 
 
@@ -1191,32 +1513,37 @@ lottie-player {
 
 
 
+
+
+/* MAIN SECTION – FULLY RESPONSIVE WRAPPER */
 .section {
   display: flex;
   flex-direction: column;
-  padding: 60px 0;
-  gap: 30px;
+  padding: 60px clamp(16px, 5vw, 80px);
+  margin: 80px 0;
+  gap: 32px;
   color: #fff;
-  font-family: 'Inter', sans-serif;
-  width: 84vw;
-  margin: auto;
-  min-height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  max-width: 1600px;
+  /* margin: 0 auto; */
+  /* min-height: 100vh; */
+  overflow-x: hidden;
 }
 
+/* FLEX ROWS – STACK ON TABLETS & MOBILES */
 .row {
   display: flex;
-  gap: 40px;
-  /* height: auto; */
+  gap: 32px;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
+/* BASE CARD STYLES – ALL ORIGINAL DESIGN PRESERVED */
 .m-card {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 24px;
+  border-radius: 28px;
   background: #1a1a1a;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -1225,22 +1552,21 @@ lottie-player {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-
 .m-card:hover {
   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
 }
 
-/* Left Big Card - Adobe */
+/* ========== LEFT BIG CARDS (ADOBE + MICROSOFT 365) ========== */
 .left-card {
   flex: 2;
-  height: 100%;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   padding: 30px;
-  gap: 60px;
+  gap: 48px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   background: linear-gradient(45deg, #ff00cc94, #5f5fff94, #F8B87E94);
   border-radius: 30px;
 }
@@ -1267,6 +1593,7 @@ lottie-player {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
@@ -1277,18 +1604,19 @@ lottie-player {
 }
 
 .left-card h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   margin: 0;
   background: linear-gradient(90deg, #fff, #aaa);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
 
 .left-card p {
-  color: #aaa;
+  color: #ddd;
   margin: 10px 0 0;
-  font-size: .9rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -1296,61 +1624,53 @@ lottie-player {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
-  margin-top: 60px;
-  margin-bottom: -30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   z-index: 2;
 }
 
 .left-card .logos img {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   padding: 7px;
-  border-radius: 12px;
+  border-radius: 14px;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
-.left-card .logos img:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
-}
-
+/* PREVIEW IMAGE – SMOOTH 3D HOVER EFFECT (EXACTLY AS REQUESTED) */
 .left-card .preview {
-  width: 50%;
-  height: 115%;
-  background-size: cover;
-  background-position: center;
   position: absolute;
   right: 0;
   bottom: 0;
+  width: 100%;
+  height: 90%;
+  max-width: 300px;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: right right;
+  background-repeat: no-repeat;
   z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border-top-left-radius: 28px;
+  opacity: 0.85;
 }
 
-.left-card .preview:hover {
-  transform: perspective(1000px) rotateY(-10deg) rotateX(3deg) scale(1.03);
-  transition: all ease .3s;
+.left-card:hover .preview {
+  transform: perspective(1000px) rotateY(-12deg) rotateX(4deg) scale(1.04);
 }
 
-
-/* right Column */
-.right-col {
-  flex: 1;
-  /* height: 100%; */
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
+/* ========== RIGHT CARD STYLES (Prime & ChatGPT) ========== */
 .right-card {
   flex: 1;
-  height: 100%;
+  min-width: 260px;
   padding: 30px;
   display: flex;
   flex-direction: column;
-  /* gap: 25px; */
   position: relative;
   overflow: hidden;
 }
@@ -1377,6 +1697,7 @@ lottie-player {
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
@@ -1397,36 +1718,36 @@ lottie-player {
   margin: 8px 0 0;
 }
 
+/* TV PREVIEW – HOVER MOVEMENT (3D) */
 .amz-preview {
   position: relative;
   margin-top: auto;
   bottom: -40px;
+  left: 20%;
   width: 100%;
-  left: 60px;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 20px 0; */
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.amz-preview:hover {
-  transform: perspective(1000px) translatex(-50px) translateY(10px) rotateY(0deg) rotateX(0deg) scale(1.05);
-  transition: all ease-in-out .3s;
+.prime-card:hover .amz-preview {
+  transform: perspective(1000px) translateX(-18px) translateY(12px) rotateY(5deg) scale(1.05);
 }
-
 
 .tv-wrapper {
   position: relative;
-  width: 90%;
-  height: 250px;
-  /* scale: .8; */
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
 }
 
 .tv-image {
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: contain;
   z-index: 2;
   position: relative;
 }
@@ -1434,26 +1755,19 @@ lottie-player {
 .screen-content {
   position: absolute;
   top: 4%;
-  left: 1%;
+  left: 7%;
   width: 98%;
   height: 85%;
-  object-fit: fill;
+  object-fit: cover;
   z-index: 1;
-  /* border-radius: 6px; */
+  border-radius: 4px;
 }
 
-/* ChatGPT Card */
+/* ChatGPT+ Card */
 .gpt-card {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d281e 100%);
   border-radius: 30px;
-  flex: 1;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  /* Ensure it takes full height */
 }
-
 
 .gpt-card::before {
   content: '';
@@ -1471,6 +1785,7 @@ lottie-player {
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
@@ -1494,46 +1809,38 @@ lottie-player {
 .chatgpt-ui-preview {
   margin-top: auto;
   width: 100%;
-  height: 100%;
-  /* scale: 1; */
-  left: 40px;
-  padding-top: 20px;
+  padding-top: 24px;
   position: relative;
-  bottom: -40px;
+  bottom: -20px;
+  left: 0;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.chatgpt-ui-preview:hover {
-  transform: perspective(1000px) translatex(-40px) translateY(0px) rotateY(0deg) rotateX(0deg) scale(1.05);
-  transition: all ease-in-out .3s;
+.gpt-card:hover .chatgpt-ui-preview {
+  transform: perspective(1000px) translateX(-20px) translateY(8px) rotateY(3deg) scale(1.04);
 }
 
 .chatgpt-ui-preview img {
   width: 100%;
-  height: 210px;
-  object-fit: fill;
-  /* border-radius: 16px; */
-  /* border: 1px solid rgba(255,255,255,0.1); */
-  /* box-shadow: 0 5px 20px rgba(0, 255, 170, 0.2); */
+  height: auto;
+  max-height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: block;
 }
 
-
-
-
-
-
-
-/* Microsoft 365 Card */
+/* ========== MICROSOFT 365 CARD ========== */
 .ms365-card {
   background: linear-gradient(45deg, #4bd8fbb8, #b781eeb1, #164797b7);
   flex: 2;
-  height: auto;
+  min-width: 280px;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   padding: 30px;
   gap: 40px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   border-radius: 30px;
 }
 
@@ -1559,6 +1866,7 @@ lottie-player {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
   z-index: 2;
 }
 
@@ -1569,16 +1877,17 @@ lottie-player {
 }
 
 .ms365-card h2 {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 5vw, 2rem);
   margin: 0;
-  background: linear-gradient(90deg, #fff, #aaa);
+  background: linear-gradient(90deg, #fff, #e0e0ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
 
 .ms365-card p {
-  color: #eee;
+  color: #f0f0f0;
   margin: 10px 0 0;
   font-size: 0.9rem;
   line-height: 1.5;
@@ -1586,55 +1895,47 @@ lottie-player {
 
 .ms365-card .logos {
   display: flex;
-  gap: 15px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 20px;
   z-index: 2;
 }
 
 .ms365-card .logos img {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.15);
   padding: 7px;
-  border-radius: 12px;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
-.ms365-card .logos img:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Microsoft Preview Image Fix */
 .ms365-card .preview {
-  width: 55%;
-  height: 80%;
-  background-size: cover;
-  background-position: center;
   position: absolute;
-  right: -20px;
-  bottom: -30px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90%;
+  max-width: 420px;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: right right;
+  background-repeat: no-repeat;
   z-index: 1;
+  pointer-events: none;
+  border-top-left-radius: 28px;
+  opacity: 0.85;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-
-.ms365-card .preview:hover {
-  transform: perspective(1000px) rotatey(-8deg) scale(1.03);
-  transition: all ease .3s;
+.ms365-card:hover .preview {
+  transform: perspective(1000px) rotateY(-12deg) rotateX(4deg) scale(1.04);
 }
 
-
-
-
-.sparkle {
-  font-size: 1rem;
-}
-
-/* Pricing */
+/* Price tag */
 .price-tag {
   font-size: 1rem;
   font-weight: 500;
@@ -1643,24 +1944,25 @@ lottie-player {
   letter-spacing: 1px;
   display: inline-block;
   background: rgba(155, 155, 155, 0.2);
-  padding: 5px 10px;
-  border-radius: 30px;
+  padding: 5px 14px;
+  border-radius: 40px;
   backdrop-filter: blur(10px);
+  width: fit-content;
 }
 
 .price-tag span {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  font-weight: 500;
+  font-size: 0.85rem;
+  opacity: 0.8;
 }
 
-/* CTA Buttons */
+/* CTA Buttons - fully responsive */
 .adb-cta-button {
   background: linear-gradient(90deg, #0066ff, #9400ff);
   color: #fff;
   border: none;
-  padding: 12px 20px;
-  width: 180px;
+  padding: 12px 24px;
+  width: fit-content;
+  min-width: 180px;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
@@ -1670,6 +1972,8 @@ lottie-player {
   z-index: 2;
   position: relative;
   overflow: hidden;
+  font-family: inherit;
+  text-align: center;
 }
 
 .adb-cta-button::before {
@@ -1692,197 +1996,256 @@ lottie-player {
   left: 100%;
 }
 
-.cta-button {
-  background: rgba(0, 255, 170, 0.2);
-  color: #00ffaa;
-  border: 1px solid rgba(0, 255, 170, 0.3);
-  padding: 10px 20px;
-  width: 100%;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-  z-index: 2;
+.ms365-button {
+  background: linear-gradient(90deg, #1e88e5, #6c42be);
+  box-shadow: 0 5px 20px rgba(30, 136, 229, 0.3);
 }
 
-.cta-button:hover {
-  background: rgba(0, 255, 170, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 255, 170, 0.2);
+a {
+  text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-  .card {
-    flex: 0 0 85%;
-  }
-}
-
-
-
-
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-
-  .line,
-  .cta-line {
-    font-size: 4rem;
+/* ========== PERFECT RESPONSIVENESS – ALL DEVICES ========== */
+@media (max-width: 1100px) {
+  .row {
+    gap: 28px;
   }
 
-  .cta-btn {
-    font-size: 1.4rem;
-    padding: 1.4rem 2rem;
-  }
-
-  .phone-showcase {
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
     max-width: 320px;
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .left-card,
+  .right-card,
+  .ms365-card {
+    width: 100%;
+    flex: auto;
+  }
+
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
+    height: 90%;
+    max-width: 300px;
+    opacity: 0.75;
+    border-top-left-radius: 24px;
+  }
+
+  .chatgpt-ui-preview {
+    bottom: -5px;
+  }
+
+  .amz-preview {
+    left: 30%;
+  }
+
+  .tv-wrapper {
+    max-width: 480px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-content {
-    padding-bottom: max(5vh, 60px);
+  .section {
+    padding: 40px 20px;
+    gap: 28px;
   }
 
-  .line,
-  .cta-line {
-    font-size: 3rem;
+  .left-card,
+  .ms365-card,
+  .right-card {
+    padding: 24px 22px;
   }
 
-  .inline-imgs {
-    width: 160px;
-    height: 52px;
+  .left-card .top img,
+  .ms365-card .top img {
+    width: 55px;
   }
 
-  .inline-imgs img,
-  .more-box {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+  .left-card h2,
+  .ms365-card h2 {
+    font-size: 1.6rem;
   }
 
-  .inline-imgs img:nth-child(2) {
-    left: 36px;
+  .left-card .logos img,
+  .ms365-card .logos img {
+    width: 38px;
+    height: 38px;
+    padding: 5px;
   }
 
-  .more-box {
-    left: 108px;
-    font-size: 1rem;
-  }
-
-  .line2-icon {
-    width: 52px;
-    height: 52px;
-    font-size: 1.5rem;
-    border-radius: 16px;
-  }
-
-  .cta-btn {
-    font-size: 1.2rem;
-    padding: 1.2rem 1.8rem;
-  }
-
-  .phone-showcase {
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .nav-link {
-    display: none;
-  }
-
-  .nav-actions {
-    display: none;
-  }
-
-  .line,
-  .cta-line {
-    font-size: 2.2rem;
-  }
-
-  .inline-imgs {
-    width: 120px;
-    height: 44px;
-    margin: 0 0.4rem;
-  }
-
-  .line2-icon img {
-    width: 80px;
-    height: 70px;
-    margin-right: 20px;
-  }
-
-  .inline-imgs img,
-  .more-box {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-  }
-
-  .inline-imgs img:nth-child(2) {
-    left: 30px;
-  }
-
-  .more-box {
-    left: 60px;
+  .price-tag {
     font-size: 0.9rem;
   }
 
-  .line2-icon {
+  .adb-cta-button {
+    width: 100%;
+    text-align: center;
+    min-width: unset;
+  }
+
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    opacity: 0.7;
+  }
+
+  .chatgpt-ui-preview img {
+    max-height: 180px;
+  }
+
+  .prime-card:hover .amz-preview,
+  .gpt-card:hover .chatgpt-ui-preview {
+    transform: perspective(1000px) translateX(-8px) translateY(8px) scale(1.03);
+  }
+}
+
+@media (max-width: 580px) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .left-card,
+  .ms365-card,
+  .right-card {
+    padding: 20px 18px;
+  }
+
+  .left-card .top img {
+    width: 48px;
+  }
+
+  .ms365-card .top img {
+    width: 48px;
+  }
+
+  .prime-card .top img {
     width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
-    border-radius: 14px;
   }
 
-  .cta-btn {
-    font-size: .8rem;
-    padding: .6rem 1rem;
-    border-radius: 10px;
+  .gpt-card .top img {
+    width: 42px;
   }
 
-  .phone-showcase {
-    margin-top: 4rem;
-    max-width: 240px;
+  h2,
+  .left-card h2,
+  .ms365-card h2 {
+    font-size: 1.4rem;
   }
 
-  .app-slide {
-    padding: 1.5rem;
+  .prime-card h3,
+  .gpt-card h3 {
+    font-size: 1.3rem;
   }
 
-  .app-logo {
-    width: 50px;
-    height: 50px;
+  .left-card .logos img,
+  .ms365-card .logos img {
+    width: 34px;
+    height: 34px;
   }
 
-  .app-title {
-    font-size: 1.1rem;
-  }
-
-  .app-benefit {
+  .price-tag {
     font-size: 0.8rem;
   }
 
-  .price-toolsparrow {
-    font-size: 1.2rem;
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
+    max-width: 260px;
+    opacity: 0.6;
+    right: -2px;
+    bottom: -2px;
   }
 
-  .price-original {
-    font-size: 1rem;
+  .amz-preview {
+    left: 20%;
+    bottom: -30px;
+  }
+
+  .tv-wrapper {
+    max-width: 340px;
+  }
+
+  .chatgpt-ui-preview img {
+    max-height: 150px;
+  }
+
+  .chatgpt-ui-preview {
+    bottom: 0px;
   }
 }
+
+@media (max-width: 450px) {
+
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
+    opacity: 0.55;
+    max-width: 240px;
+  }
+
+  .left-card .logos,
+  .ms365-card .logos {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .section {
+    max-width: 1800px;
+    padding: 80px 40px;
+  }
+
+  .left-card .preview,
+  .ms365-card .preview {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .row {
+    gap: 48px;
+  }
+}
+
+/* Ensure images always visible and crisp */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.logos img,
+.top img {
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2108,15 +2471,23 @@ lottie-player {
 
 
 
+
+/* dummy content to show footer at bottom (just for demo) */
+.dummy-space {
+  flex: 1;
+}
+
+/* ========== FOOTER STYLES – FULLY RESPONSIVE, ORIGINAL DESIGN INTACT ========== */
 .footer {
   color: #aaa;
-  margin-top: 10rem;
-  /* padding: 20px 6rem; */
+  margin-top: 6rem;
+  /* reduced from 10rem for better spacing on all devices, but still spacious */
+  width: 100%;
+  background: #0a0a0c;
 }
 
 .footer-inner {
-  padding: 40px;
-  max-width: 100vw;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -2124,12 +2495,12 @@ lottie-player {
   gap: 60px;
   border-bottom: 1px solid #222;
   border-top: 1px solid #555;
-  padding-bottom: 40px;
   padding: 60px 6rem;
   padding-left: 7rem;
   padding-right: 5rem;
 }
 
+/* Left Brand Area */
 .footer-left {
   flex: 1;
 }
@@ -2140,11 +2511,12 @@ lottie-player {
 }
 
 .footer-tagline {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #aaa;
   line-height: 1.6;
 }
 
+/* Right side: links & contact */
 .footer-right {
   display: flex;
   gap: 80px;
@@ -2181,21 +2553,31 @@ lottie-player {
   color: #fff;
 }
 
+/* optional underline effect (preserved) */
 .footer-links a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
   width: 100%;
+  height: 1px;
+  background: #fff;
 }
 
 .footer-contact p {
   font-size: 1rem;
   margin: 15px 0;
   color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .footer-contact i {
   color: #777;
-  font-size: .8rem;
-  min-width: 18px;
-  /* keeps alignment clean */
+  font-size: 0.9rem;
+  width: 22px;
   transition: color 0.3s;
 }
 
@@ -2203,29 +2585,130 @@ lottie-player {
   color: #fff;
 }
 
-.footer-contact span {
-  color: #fff;
-  margin-right: 6px;
-}
-
+/* bottom bar */
 .footer-bottom {
   text-align: center;
-  padding: 20px;
+  padding: 24px 20px;
   font-size: 0.85rem;
   color: #777;
   letter-spacing: 0.3px;
+  border-top: none;
+  background: #0a0a0c;
 }
 
-/* Responsive */
+/* ========== PERFECT RESPONSIVENESS – CENTERED ON MOBILE ========== */
+@media (max-width: 1024px) {
+  .footer-inner {
+    padding: 50px 4rem;
+    gap: 50px;
+  }
+
+  .footer-right {
+    gap: 60px;
+  }
+}
+
 @media (max-width: 900px) {
   .footer-inner {
     flex-direction: column;
+    align-items: center;
+    /* center content horizontally */
     text-align: center;
-    gap: 30px;
+    gap: 40px;
+    padding: 50px 2rem;
+  }
+
+  .footer-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .footer-right {
     flex-direction: column;
-    gap: 30px;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .footer-links,
+  .footer-contact {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-contact p {
+    justify-content: center;
+  }
+
+  .footer-contact i {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    padding: 40px 1.5rem;
+    gap: 32px;
+  }
+
+  .footer-logo {
+    width: 120px;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-contact p {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    padding: 18px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 32px 1.2rem;
+  }
+
+  .footer-contact p {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-contact i {
+    margin-bottom: 4px;
   }
 }
