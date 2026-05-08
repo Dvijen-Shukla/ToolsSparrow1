@@ -149,7 +149,7 @@
               </div>
               <div class="line-right">
                 <lottie-player src="json/arrow.json" background="transparent" speed=".4"
-                  style="width: 100%; height: 120px; transform: rotate(-90deg); margin-bottom: 60px; scale: 1.7;" loop
+                  style="width: 100%; height: 120px; transform: rotate(-90deg); margin-bottom: 60px;" loop
                   autoplay>
                 </lottie-player>
                 <span>right</span>
@@ -439,13 +439,14 @@
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <div class="section-header">
-      <h1 class="section-title">Explore Categories</h1>
-      <p class="section-subtitle">The latest tools and services for your digital life</p>
-    </div>
+
 
 
     <div class="slider-container">
+      <div class="section-header">
+        <h1 class="section-title">Explore Categories</h1>
+        <p class="section-subtitle">The latest tools and services for your digital life</p>
+      </div>
       <div class="slider-track" id="slider">
         <!-- Your cards remain exactly the same -->
         <div class="card">
@@ -501,10 +502,12 @@
 
 
 
+
+
     <section class="section">
       <!-- First Row -->
       <div class="row">
-        <!-- Adobe Card (Left) -->
+        <!-- Adobe Creative Cloud Card (Left) -->
         <div class="m-card left-card">
           <div class="top">
             <img src="img/acc.png" alt="Adobe Logo">
@@ -520,17 +523,14 @@
             <img src="img/pr.png" alt="PR">
             <img src="img/adobe illustrator.png" alt="AI">
           </div>
-
           <a href="product.html?id=adobe_creative_cloud">
             <button class="adb-cta-button">Get All Apps Now</button>
           </a>
-          <div class="preview" style="background-image: url('img/adb.webp');">
-            <div class="gradient-overlay"></div>
-          </div>
+          <div class="preview" style="background-image: url('img/adb.webp');"></div>
         </div>
 
         <!-- Amazon Prime Card (Right) -->
-        <a href="product.html?id=prime_premium" style="text-decoration: none;">
+        <a href="product.html?id=prime_premium" style="display: block; flex: 1; min-width: 260px;">
           <div class="m-card right-card prime-card">
             <div class="top">
               <img src="img/prime.png" alt="Amazon Prime">
@@ -552,8 +552,8 @@
 
       <!-- Second Row -->
       <div class="row">
-        <!-- ChatGPT Card (Left) -->
-        <a href="product.html?id=chatgpt_plus" style="text-decoration: none;">
+        <!-- ChatGPT+ Card -->
+        <a href="product.html?id=chatgpt_plus" style="display: block; flex: 1; min-width: 260px;">
           <div class="m-card right-card gpt-card">
             <div class="top">
               <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT+">
@@ -563,15 +563,13 @@
                 <div class="price-tag">$20<span>/mo</span></div>
               </div>
             </div>
-
             <div class="chatgpt-ui-preview">
-              <img src="img/gpt1.png" style="border-radius: 7px;" alt="ChatGPT Image Generation UI">
+              <img src="img/gpt1.png" alt="ChatGPT Image Generation UI">
             </div>
           </div>
         </a>
 
-
-        <!-- Microsoft 365 Card (replacing Figma) -->
+        <!-- Microsoft 365 Card -->
         <div class="m-card left-card ms365-card">
           <div class="top">
             <img src="img/m365.png" alt="Microsoft 365 Logo">
@@ -589,15 +587,11 @@
             <img src="img/team.png" alt="Teams">
             <img src="img/onedrive.png" alt="OneDrive">
           </div>
-
           <a href="product.html?id=microsoft_365">
             <button class="adb-cta-button ms365-button">Get Microsoft 365</button>
           </a>
-          <div class="preview" style="background-image: url('img/micro2.png');">
-            <div class="gradient-overlay"></div>
-          </div>
+          <div class="preview" style="background-image: url('img/micro2.png');"></div>
         </div>
-
       </div>
     </section>
 
@@ -792,47 +786,44 @@
 
 
 
+  <!-- Dummy content to simulate page (not part of footer design) -->
+  <div class="dummy-space"></div>
 
-    <!-- ==== FOOTER ==== -->
-    <footer class="footer">
-      <div class="footer-inner">
-
-        <!-- Left: Brand -->
-        <div class="footer-left">
-          <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
-          <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
-        </div>
-
-        <!-- Right: Links + Contact -->
-        <div class="footer-right">
-          <div class="footer-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Refund Policy</a></li>
-              <li><a href="#">Shop</a></li>
-            </ul>
-          </div>
-          <div class="footer-contact">
-            <h4>Contact</h4>
-            <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br>
-              Sihor Ghanghali Road,<br>
-              Bhavnagar, Gujarat, India
-            </p>
-            <p><i class="fas fa-phone"></i> +91 63546 33185</p>
-            <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
-          </div>
-        </div>
+  <!-- ==== FOOTER – FULLY RESPONSIVE, CENTERED ON MOBILE, ORIGINAL STYLE ==== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Left: Brand -->
+      <div class="footer-left">
+        <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
+        <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
       </div>
 
-      <!-- Bottom -->
-      <div class="footer-bottom">
-        <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+      <!-- Right: Links + Contact -->
+      <div class="footer-right">
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br> Sihor Ghanghali Road,<br> Bhavnagar, Gujarat, India</p>
+          <p><i class="fas fa-phone"></i> +91 63546 33185</p>
+          <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
+        </div>
       </div>
-    </footer>
+    </div>
 
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+    </div>
+  </footer>
 
 
     <!-- Lenis CDN -->
