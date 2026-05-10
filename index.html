@@ -514,7 +514,7 @@
             <div>
               <h2>Adobe Creative Cloud</h2>
               <p>All-in-one suite for creators – Photoshop, AE, PR, and more.</p>
-              <div class="price-tag">$9.99<span>/mo</span></div>
+              <div class="price-tag">₹1,099<span>/mo</span></div>
             </div>
           </div>
           <div class="logos">
@@ -537,7 +537,7 @@
               <div>
                 <h3>Amazon Prime</h3>
                 <p class="desc">Watch unlimited shows, movies and Originals.</p>
-                <div class="price-tag">$59.99<span>/yr</span></div>
+                <div class="price-tag">₹899<span>/yr</span></div>
               </div>
             </div>
             <div class="amz-preview">
@@ -560,7 +560,7 @@
               <div>
                 <h3>ChatGPT+</h3>
                 <p class="desc">Generate AI responses, images, code & more with GPT-4.</p>
-                <div class="price-tag">$20<span>/mo</span></div>
+                <div class="price-tag">₹1,999<span>/mo</span></div>
               </div>
             </div>
             <div class="chatgpt-ui-preview">
@@ -576,7 +576,7 @@
             <div>
               <h2>Microsoft 365</h2>
               <p>Premium Office apps, cloud storage, and advanced security for you and your team.</p>
-              <div class="price-tag">$6.99<span>/mo</span></div>
+              <div class="price-tag">₹1,799<span>/mo</span></div>
             </div>
           </div>
           <div class="logos">
@@ -826,62 +826,12 @@
   </footer>
 
 
-    <!-- Lenis CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
-    <!-- EXTRA SLOW & LAZY SMOOTH SCROLLING -->
-    <script>
-      (function () {
-        // Initialize Lenis with EXTREMELY SLOW, LAZY premium settings
-        const lenis = new Lenis({
-          duration: 4.5,              // VERY SLOW - 4.5 seconds for full scroll (feels lazy and premium)
-          easing: (t) => 1 - Math.pow(1 - t, 4), // Smoother deceleration curve
-          smooth: true,
-          smoothTouch: false,
-          touchMultiplier: 1.2,
-          infinite: false,
-          lerp: 0.05,                // Very low lerp = maximum inertia and lazy feel
-          wheelMultiplier: 0.45,      // Very low = each scroll moves very little
-        });
-
-        // RAF loop
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Sync with GSAP if available
-        if (window.gsap) {
-          gsap.ticker.remove(gsap.updateRoot);
-          gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-            gsap.updateRoot(time);
-          });
-          gsap.ticker.lagSmoothing(0);
-
-          if (window.ScrollTrigger) {
-            setTimeout(() => ScrollTrigger.refresh(), 100);
-            window.addEventListener('resize', () => setTimeout(() => ScrollTrigger.refresh(), 100));
-          }
-        }
-
-        window.lenis = lenis;
-        console.log('🐢 EXTRA SLOW & LAZY LENIS ACTIVE - Duration: 4.5s');
-      })();
-    </script>
-
-
-
-
-    <!-- Include GSAP + ScrollToPlugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script src="script.js"></script>
+  <!-- CORRECT ORDER -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="script.js"></script>
 
 
 
