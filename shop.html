@@ -5,11 +5,1193 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ToolsSparrow — Shop</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="shop.css">
+    <style>
+        /* ── Lenis resets ── */
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        .filters {
+            will-change: transform;
+        }
+
+        .card-thumb img {
+            will-change: transform;
+        }
+
+        /* ── Variables ── */
+        :root {
+            --black: #0a0a0a;
+            --dark: #121212;
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --white: #ffffff;
+            --gray: #a1a1aa;
+            --gray-dark: #3f3f46;
+            --nav-height: 78px;
+            --sidebar-w: 260px;
+            --transition: all 0.25s ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            background: #0d0d0d;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ══════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(13, 13, 13, .88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            text-decoration: none;
+            z-index: 1002;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #a1a1aa;
+            font-weight: 500;
+            font-size: .92rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .icon-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-icon {
+            color: #a1a1aa;
+            font-size: 1.05rem;
+            position: relative;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-icon:hover {
+            color: var(--white);
+        }
+
+        .badge {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            font-size: .62rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Search */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 200px;
+            padding: .55rem 1rem .55rem 2.4rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .05);
+            color: var(--white);
+            font-size: .82rem;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-toggle-btn {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            font-size: .95rem;
+            position: absolute;
+            left: 10px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, .08);
+            border-color: var(--primary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1010;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: var(--transition);
+            border-radius: 2px;
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Fullscreen menu overlay */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: circle(0% at 90% 5%);
+            transition: clip-path .8s cubic-bezier(.77, 0, .175, 1);
+        }
+
+        .menu-overlay.active {
+            clip-path: circle(150% at 90% 5%);
+        }
+
+        .menu-close-btn {
+            position: absolute;
+            top: 22px;
+            right: 5%;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.4rem;
+            cursor: pointer;
+            opacity: .7;
+            transition: var(--transition);
+        }
+
+        .menu-close-btn:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+
+        .overlay-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .overlay-links a {
+            display: block;
+            font-size: clamp(2.2rem, 9vw, 4.5rem);
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            margin: .9rem 0;
+            letter-spacing: -2px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+
+        .menu-overlay.active .overlay-links a {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: calc(.1s * var(--i));
+        }
+
+        /* ══════════════════════════════════════════
+       MOBILE FILTER DRAWER
+    ══════════════════════════════════════════ */
+        .filter-drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            z-index: 900;
+            backdrop-filter: blur(4px);
+        }
+
+        .filter-drawer-overlay.active {
+            display: block;
+        }
+
+        .filter-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: min(320px, 88vw);
+            height: 100dvh;
+            background: #141414;
+            border-right: 1px solid rgba(255, 255, 255, .08);
+            z-index: 910;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+            padding: 0 0 40px;
+        }
+
+        .filter-drawer.active {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            position: sticky;
+            top: 0;
+            background: #141414;
+            z-index: 2;
+        }
+
+        .drawer-title {
+            font-size: .95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 4px;
+        }
+
+        .drawer-close:hover {
+            color: #fff;
+        }
+
+        .drawer-body {
+            padding: 20px 20px 0;
+        }
+
+        /* Filter trigger btn (mobile) */
+        .filter-trigger-btn {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #e6e6e6;
+            font-size: .85rem;
+            font-family: inherit;
+            padding: 9px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-trigger-btn:hover {
+            background: rgba(255, 255, 255, .09);
+        }
+
+        .filter-trigger-btn .badge-count {
+            background: var(--primary);
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 99px;
+            display: none;
+        }
+
+        .filter-trigger-btn .badge-count.visible {
+            display: inline-block;
+        }
+
+        /* Sort select (mobile/all) */
+        .sort-select {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #e6e6e6;
+            font-size: .82rem;
+            font-family: inherit;
+            padding: 9px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23aaa' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 32px;
+        }
+
+        .sort-select option {
+            background: #1a1a1a;
+        }
+
+        /* ══════════════════════════════════════════
+       MAIN WRAPPER
+    ══════════════════════════════════════════ */
+        .main-wrapper {
+            padding-top: var(--nav-height);
+        }
+
+        .container {
+            max-width: 1600px;
+            padding: 0 4% 60px;
+            margin: 0 auto;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            padding: 48px 0 52px;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            margin-bottom: 40px;
+        }
+
+        .shop-title {
+            font-size: clamp(3.2rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: .9;
+            color: #eee;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            max-width: 360px;
+            text-align: right;
+            color: #888;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            font-weight: 400;
+            line-height: 1.25;
+        }
+
+        /* ── Layout ── */
+        .layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+        }
+
+        /* ── Sidebar ── */
+        .filters {
+            flex: 0 0 var(--sidebar-w);
+            width: var(--sidebar-w);
+            position: sticky;
+            top: calc(var(--nav-height) + 24px);
+            align-self: flex-start;
+        }
+
+        .filter-block {
+            margin-bottom: 32px;
+        }
+
+        .filter-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            color: #fff;
+            font-size: .92rem;
+            font-weight: 500;
+        }
+
+        .filter-icon {
+            width: 18px;
+            height: 18px;
+            opacity: .8;
+            flex-shrink: 0;
+        }
+
+        .filter-list {
+            list-style: none;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .15s;
+            color: #aaa;
+            font-size: .85rem;
+        }
+
+        .filter-item:hover {
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .filter-item input[type="checkbox"],
+        .filter-item input[type="radio"] {
+            width: 15px;
+            height: 15px;
+            appearance: none;
+            border: 1.5px solid rgba(255, 255, 255, .3);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .filter-item input[type="radio"] {
+            border-radius: 50%;
+        }
+
+        .filter-item input[type="checkbox"]:checked,
+        .filter-item input[type="radio"]:checked {
+            background: #fff;
+            border-color: #fff;
+        }
+
+        .filter-item input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -52%);
+            font-size: 10px;
+            font-weight: 700;
+            color: #0d0d0d;
+        }
+
+        .filter-item input[type="radio"]:checked::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: #0d0d0d;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .filter-name {
+            flex: 1;
+        }
+
+        .filter-count {
+            color: #666;
+            font-size: .75rem;
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn {
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: transparent;
+            color: #e6e6e6;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: .82rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, .05);
+            border-color: rgba(139, 92, 246, .4);
+        }
+
+        /* ── Products Section ── */
+        .products-section {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .results-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .results-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .results-count {
+            color: #bdbdbd;
+            font-size: .82rem;
+        }
+
+        .active-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: #e6e6e6;
+            font-size: .78rem;
+            padding: 5px 10px;
+            border-radius: 999px;
+            display: inline-flex;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .chip .x {
+            opacity: .55;
+            cursor: pointer;
+            font-size: .9rem;
+        }
+
+        .chip .x:hover {
+            opacity: 1;
+        }
+
+        /* ── Product Grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px 16px;
+        }
+
+        .card {
+            position: relative;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card-thumb {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            position: relative;
+        }
+
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .35s ease;
+        }
+
+        .card:hover .card-thumb img {
+            transform: scale(1.06);
+        }
+
+        .discount {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #222;
+            color: #fff;
+            padding: 3px 7px;
+            font-weight: 600;
+            font-size: .7rem;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .card-body {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .product-title {
+            font-size: .875rem;
+            color: #f3f3f3;
+            font-weight: 600;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .price-area {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .price-now {
+            font-weight: 800;
+            font-size: .95rem;
+            color: #fff;
+        }
+
+        .price-old {
+            color: #686868;
+            font-size: .72rem;
+            text-decoration: line-through;
+            margin-top: 3px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 40px;
+            color: #666;
+            grid-column: 1/-1;
+            font-size: .9rem;
+        }
+
+        /* ══════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+    ══════════════════════════════════════════ */
+
+        /* Large desktop: 4-col grid */
+        @media (min-width: 1280px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Desktop / tablet landscape */
+        @media (max-width: 1279px) and (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            :root {
+                --sidebar-w: 240px;
+            }
+        }
+
+        /* Tablet portrait */
+        @media (max-width: 1023px) and (min-width: 769px) {
+            :root {
+                --sidebar-w: 220px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .search-input {
+                width: 170px;
+            }
+        }
+
+        /* Navbar collapse */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            :root {
+                --nav-height: 68px;
+            }
+
+            .search-toggle-btn {
+                position: static;
+                pointer-events: all;
+                cursor: pointer;
+                padding: 4px;
+            }
+
+            .search-input {
+                position: absolute;
+                right: 0;
+                width: 0;
+                opacity: 0;
+                padding: 0;
+                pointer-events: none;
+                background: #1a1a1a;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .search-container.active .search-input {
+                width: 170px;
+                opacity: 1;
+                padding: .55rem 1rem .55rem 2.2rem;
+                pointer-events: all;
+                border-color: var(--primary);
+                transform: translateY(-50%);
+            }
+        }
+
+        /* Mobile — sidebar becomes drawer */
+        @media (max-width: 768px) {
+            .filters {
+                display: none;
+            }
+
+            /* hidden; opened via drawer */
+            .filter-trigger-btn {
+                display: flex;
+            }
+
+            .layout {
+                display: block;
+            }
+
+            .products-section {
+                width: 100%;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 32px 0 36px;
+                margin-bottom: 24px;
+            }
+
+            .tagline {
+                text-align: left;
+                max-width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px 12px;
+            }
+
+            .results-top {
+                gap: 10px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 4% 50px;
+            }
+
+            :root {
+                --nav-height: 62px;
+            }
+
+            .icon-group {
+                gap: .75rem;
+            }
+
+            .logo-text {
+                font-size: 1.05rem;
+            }
+
+            .search-container.active .search-input {
+                width: 140px;
+                padding: .5rem .8rem .5rem .5rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px 10px;
+            }
+
+            .product-title {
+                font-size: .8rem;
+            }
+
+            .price-now {
+                font-size: .88rem;
+            }
+        }
+
+        /* Very small — single column */
+        @media (max-width: 360px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Drawer inside: re-use filter styles */
+        .filter-drawer .filter-block {
+            margin-bottom: 28px;
+        }
+
+        .filter-drawer .filter-header {
+            margin-bottom: 12px;
+        }
+
+        .filter-drawer .btn {
+            margin-top: 8px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        
+/* dummy content to show footer at bottom (just for demo) */
+.dummy-space {
+  flex: 1;
+}
+
+/* ========== FOOTER STYLES – FULLY RESPONSIVE, ORIGINAL DESIGN INTACT ========== */
+.footer {
+  color: #aaa;
+  margin-top: 6rem;
+  /* reduced from 10rem for better spacing on all devices, but still spacious */
+  width: 100%;
+  background: #0a0a0c;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #555;
+  padding: 60px 6rem;
+  padding-left: 7rem;
+  padding-right: 5rem;
+}
+
+/* Left Brand Area */
+.footer-left {
+  flex: 1;
+}
+
+.footer-logo {
+  width: 140px;
+  margin-bottom: 14px;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* Right side: links & contact */
+.footer-right {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 24px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #aaa;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* optional underline effect (preserved) */
+.footer-links a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
+
+.footer-contact p {
+  font-size: 1rem;
+  margin: 15px 0;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-contact i {
+  color: #777;
+  font-size: 0.9rem;
+  width: 22px;
+  transition: color 0.3s;
+}
+
+.footer-contact p:hover i {
+  color: #fff;
+}
+
+/* bottom bar */
+.footer-bottom {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 0.85rem;
+  color: #777;
+  letter-spacing: 0.3px;
+  border-top: none;
+  background: #0a0a0c;
+}
+
+/* ========== PERFECT RESPONSIVENESS – CENTERED ON MOBILE ========== */
+@media (max-width: 1024px) {
+  .footer-inner {
+    padding: 50px 4rem;
+    gap: 50px;
+  }
+
+  .footer-right {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    /* center content horizontally */
+    text-align: center;
+    gap: 40px;
+    padding: 50px 2rem;
+  }
+
+  .footer-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .footer-links,
+  .footer-contact {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-contact p {
+    justify-content: center;
+  }
+
+  .footer-contact i {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    padding: 40px 1.5rem;
+    gap: 32px;
+  }
+
+  .footer-logo {
+    width: 120px;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-contact p {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    padding: 18px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 32px 1.2rem;
+  }
+
+  .footer-contact p {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-contact i {
+    margin-bottom: 4px;
+  }
+}
+    </style>
 </head>
 
 <body>
@@ -17,35 +1199,101 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="logo">
-            <img src="img/tlogo.png" alt="ToolsSparrow">
+            <img src="img/tlogo.png" alt="Logo" onerror="this.style.display='none'">
             <span class="logo-text">Tools<span>Sparrow</span></span>
         </a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="shop.html" class="nav-link active">Shop</a></li>
+            <li><a href="shop.html" class="nav-link">Shop</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
-            <!-- <li><a href="product.html" class="nav-link">Product</a></li> -->
         </ul>
 
         <div class="nav-actions">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" class="search-input" placeholder="Find services..." />
+            <div class="search-container" id="searchWrapper">
+                <button class="search-toggle-btn" id="searchToggle"><i class="fas fa-search"></i></button>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search services…" />
             </div>
-            <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
-            <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
-            <a href="#" class="nav-icon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="badge">3</span>
-            </a>
+            <div class="icon-group">
+                <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+                <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                <a href="#" class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">3</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburgerBtn">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
+    <!-- Fullscreen Menu -->
+    <div class="menu-overlay" id="menuOverlay">
+        <button class="menu-close-btn" id="menuClose">✕</button>
+        <ul class="overlay-links">
+            <li style="--i:1"><a href="index.html">Home</a></li>
+            <li style="--i:2"><a href="shop.html">Shop</a></li>
+            <li style="--i:3"><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Filter Drawer Overlay -->
+    <div class="filter-drawer-overlay" id="filterDrawerOverlay"></div>
+
+    <!-- Mobile Filter Drawer -->
+    <div class="filter-drawer" id="filterDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Filters</span>
+            <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="drawer-body">
+            <div class="filter-block">
+                <div class="filter-header">
+                    <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="#bfbfbf" stroke-width="1.6">
+                        <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    </svg>
+                    Categories
+                </div>
+                <ul class="filter-list" id="categoryListMobile"></ul>
+            </div>
+            <div class="filter-block">
+                <div class="filter-header">
+                    <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="#bfbfbf" stroke-width="1.6">
+                        <path d="M20.59 13.41L11 3 3 11l8.59 8.59a2 2 0 0 0 2.83 0l6.17-6.18a2 2 0 0 0 0-2.82z" />
+                        <circle cx="7" cy="7" r="1.5" />
+                    </svg>
+                    Price
+                </div>
+                <ul class="filter-list" id="priceListMobile">
+                    <li class="filter-item" data-value="all"><input type="radio" name="priceMobile" id="pm_all"
+                            checked><label for="pm_all" class="filter-row"><span class="filter-name">All</span></label>
+                    </li>
+                    <li class="filter-item" data-value="0-1700"><input type="radio" name="priceMobile" id="pm_0"><label
+                            for="pm_0" class="filter-row"><span class="filter-name">₹0 – ₹1,700</span></label></li>
+                    <li class="filter-item" data-value="1700-3400"><input type="radio" name="priceMobile"
+                            id="pm_1700"><label for="pm_1700" class="filter-row"><span class="filter-name">₹1,700 –
+                                ₹3,400</span></label></li>
+                    <li class="filter-item" data-value="3400-5100"><input type="radio" name="priceMobile"
+                            id="pm_3400"><label for="pm_3400" class="filter-row"><span class="filter-name">₹3,400 –
+                                ₹5,100</span></label></li>
+                    <li class="filter-item" data-value="5100-6800"><input type="radio" name="priceMobile"
+                            id="pm_5100"><label for="pm_5100" class="filter-row"><span class="filter-name">₹5,100 –
+                                ₹6,800</span></label></li>
+                    <li class="filter-item" data-value="6800+"><input type="radio" name="priceMobile"
+                            id="pm_6800"><label for="pm_6800" class="filter-row"><span class="filter-name">₹6,800
+                                +</span></label></li>
+                </ul>
+            </div>
+            <button class="btn" id="clearBtnMobile">Reset Filters</button>
+        </div>
+    </div>
+
+    <!-- MAIN -->
     <div class="main-wrapper">
         <div class="container">
-            <!-- HERO -->
+
+            <!-- Hero -->
             <header class="hero">
                 <h1 class="shop-title">SHOP</h1>
                 <div class="hero-right">
@@ -53,9 +1301,10 @@
                 </div>
             </header>
 
-            <!-- LAYOUT - FLEX NOT GRID FOR STICKY TO WORK -->
+            <!-- Layout -->
             <div class="layout">
-                <!-- FILTERS SIDEBAR - STICKY WORKS! -->
+
+                <!-- Desktop Sidebar -->
                 <aside class="filters">
                     <div class="filter-block">
                         <div class="filter-header">
@@ -63,11 +1312,10 @@
                                 stroke-width="1.6">
                                 <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             </svg>
-                            <div>Categories</div>
+                            Categories
                         </div>
                         <ul class="filter-list" id="categoryList"></ul>
                     </div>
-
                     <div class="filter-block">
                         <div class="filter-header">
                             <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="#bfbfbf"
@@ -76,58 +1324,52 @@
                                     d="M20.59 13.41L11 3 3 11l8.59 8.59a2 2 0 0 0 2.83 0l6.17-6.18a2 2 0 0 0 0-2.82z" />
                                 <circle cx="7" cy="7" r="1.5" />
                             </svg>
-                            <div>Price</div>
+                            Price
                         </div>
                         <ul class="filter-list" id="priceList">
-                            <li class="filter-item" data-value="all">
-                                <input type="radio" name="price" id="price_all" checked>
-                                <label for="price_all" class="filter-row">
-                                    <span class="filter-name">All</span>
-                                </label>
-                            </li>
-                            <li class="filter-item" data-value="0-1700">
-                                <input type="radio" name="price" id="price_0">
-                                <label for="price_0" class="filter-row">
-                                    <span class="filter-name">₹0 – ₹1,700</span>
-                                </label>
-                            </li>
-                            <li class="filter-item" data-value="1700-3400">
-                                <input type="radio" name="price" id="price_1700">
-                                <label for="price_1700" class="filter-row">
-                                    <span class="filter-name">₹1,700 – ₹3,400</span>
-                                </label>
-                            </li>
-                            <li class="filter-item" data-value="3400-5100">
-                                <input type="radio" name="price" id="price_3400">
-                                <label for="price_3400" class="filter-row">
-                                    <span class="filter-name">₹3,400 – ₹5,100</span>
-                                </label>
-                            </li>
-                            <li class="filter-item" data-value="5100-6800">
-                                <input type="radio" name="price" id="price_5100">
-                                <label for="price_5100" class="filter-row">
-                                    <span class="filter-name">₹5,100 – ₹6,800</span>
-                                </label>
-                            </li>
-                            <li class="filter-item" data-value="6800+">
-                                <input type="radio" name="price" id="price_6800">
-                                <label for="price_6800" class="filter-row">
-                                    <span class="filter-name">₹6,800 +</span>
-                                </label>
-                            </li>
+                            <li class="filter-item" data-value="all"><input type="radio" name="price" id="price_all"
+                                    checked><label for="price_all" class="filter-row"><span
+                                        class="filter-name">All</span></label></li>
+                            <li class="filter-item" data-value="0-1700"><input type="radio" name="price"
+                                    id="price_0"><label for="price_0" class="filter-row"><span class="filter-name">₹0 –
+                                        ₹1,700</span></label></li>
+                            <li class="filter-item" data-value="1700-3400"><input type="radio" name="price"
+                                    id="price_1700"><label for="price_1700" class="filter-row"><span
+                                        class="filter-name">₹1,700 – ₹3,400</span></label></li>
+                            <li class="filter-item" data-value="3400-5100"><input type="radio" name="price"
+                                    id="price_3400"><label for="price_3400" class="filter-row"><span
+                                        class="filter-name">₹3,400 – ₹5,100</span></label></li>
+                            <li class="filter-item" data-value="5100-6800"><input type="radio" name="price"
+                                    id="price_5100"><label for="price_5100" class="filter-row"><span
+                                        class="filter-name">₹5,100 – ₹6,800</span></label></li>
+                            <li class="filter-item" data-value="6800+"><input type="radio" name="price"
+                                    id="price_6800"><label for="price_6800" class="filter-row"><span
+                                        class="filter-name">₹6,800 +</span></label></li>
                         </ul>
                     </div>
-
-                    <div>
-                        <button class="btn" id="clearBtn">Reset Filters</button>
-                    </div>
+                    <button class="btn" id="clearBtn">Reset Filters</button>
                 </aside>
 
-                <!-- PRODUCTS -->
+                <!-- Products -->
                 <div class="products-section">
                     <div class="results-top">
-                        <div class="results-count" id="resultsCount">Showing all 18 results</div>
-                        <div class="active-chips" id="activeChips"></div>
+                        <div class="results-left">
+                            <!-- Mobile: filter trigger -->
+                            <button class="filter-trigger-btn" id="filterTriggerBtn">
+                                <i class="fas fa-sliders-h"></i> Filters
+                                <span class="badge-count" id="filterBadgeCount">0</span>
+                            </button>
+                            <div class="results-count" id="resultsCount">Showing all 16 results</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                            <div class="active-chips" id="activeChips"></div>
+                            <select class="sort-select" id="sortSelect">
+                                <option value="default">Sort: Default</option>
+                                <option value="price-asc">Price: Low → High</option>
+                                <option value="price-desc">Price: High → Low</option>
+                                <option value="discount">Best Discount</option>
+                            </select>
+                        </div>
                     </div>
                     <section class="grid" id="productGrid"></section>
                 </div>
@@ -135,10 +1377,329 @@
         </div>
     </div>
 
-    <!-- LENIS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="shop.js"></script>
 
+
+
+
+    <!-- Dummy content to simulate page (not part of footer design) -->
+    <div class="dummy-space"></div>
+
+    <!-- ==== FOOTER – FULLY RESPONSIVE, CENTERED ON MOBILE, ORIGINAL STYLE ==== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <!-- Left: Brand -->
+            <div class="footer-left">
+                <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
+                <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
+            </div>
+
+            <!-- Right: Links + Contact -->
+            <div class="footer-right">
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br> Sihor Ghanghali Road,<br>
+                        Bhavnagar, Gujarat, India</p>
+                    <p><i class="fas fa-phone"></i> +91 63546 33185</p>
+                    <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+            <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        /* ── Lenis ── */
+        (function () {
+            const lenis = new Lenis({ duration: 1.2, easing: t => 1 - Math.pow(1 - t, 3), smooth: true, smoothTouch: false, lerp: .1, wheelMultiplier: 1 });
+            function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+            window.addEventListener('resize', () => lenis.resize());
+            document.addEventListener('visibilitychange', () => { if (!document.hidden) lenis.resize(); });
+            window.lenis = lenis;
+        })();
+
+        /* ── Nav active ── */
+        (function () {
+            const links = document.querySelectorAll('.nav-link');
+            const cur = window.location.pathname.split('/').pop() || 'index.html';
+            links.forEach(l => { if (l.getAttribute('href') === cur) l.classList.add('active'); });
+        })();
+
+        /* ── Search + Hamburger ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            const st = document.getElementById('searchToggle');
+            const sw = document.getElementById('searchWrapper');
+            const si = document.getElementById('searchInput');
+            const ham = document.getElementById('hamburgerBtn');
+            const mo = document.getElementById('menuOverlay');
+            const mc = document.getElementById('menuClose');
+
+            st.addEventListener('click', e => {
+                if (window.innerWidth <= 992) { e.stopPropagation(); sw.classList.toggle('active'); if (sw.classList.contains('active')) si.focus(); }
+            });
+            const toggleMenu = () => { const a = mo.classList.toggle('active'); ham.classList.toggle('active'); document.body.style.overflow = a ? 'hidden' : ''; };
+            ham.addEventListener('click', toggleMenu);
+            if (mc) mc.addEventListener('click', toggleMenu);
+            document.querySelectorAll('.overlay-links a').forEach(l => l.addEventListener('click', () => { if (mo.classList.contains('active')) toggleMenu(); }));
+            document.addEventListener('click', e => { if (!sw.contains(e.target)) sw.classList.remove('active'); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { sw.classList.remove('active'); if (mo.classList.contains('active')) toggleMenu(); } });
+        });
+
+        /* ── Shop Logic ── */
+        (function () {
+            const products = [
+                { id: "netflix_premium", name: "Netflix", category: "Entertainment", price: 3799, original: 4999, image: "img/netflix2.png" },
+                { id: "canva_pro", name: "Canva Pro", category: "Productivity", price: 1499, original: 2999, image: "img/p5.png" },
+                { id: "chatgpt_plus", name: "Chatgpt Plus", category: "Artificial Intelligence", price: 1999, original: 2499, image: "img/chatgpt2.png" },
+                { id: "autodesk", name: "Autodesk", category: "Design and Graphics", price: 1299, original: 1599, image: "img/autodesk.png" },
+                { id: "spotify_premium", name: "Spotify", category: "Entertainment", price: 2499, original: 2999, image: "img/spotify.jpg" },
+                { id: "prime_premium", name: "Prime Video", category: "Entertainment", price: 899, original: 1299, image: "img/prime.png" },
+                { id: "coursera_plus", name: "Coursera Plus", category: "Skill Development", price: 1999, original: 3999, image: "img/coursera.jpeg" },
+                { id: "capcut_pro", name: "Capcut Pro", category: "Design and Graphics", price: 1499, original: 1999, image: "img/p4.png" },
+                { id: "elevenlabs_private", name: "Eleven Labs Private", category: "Artificial Intelligence", price: 799, original: 999, image: "img/elevenlabs.jpeg" },
+                { id: "figma_edu_private", name: "Figma Edu Private", category: "Productivity", price: 1299, original: 1699, image: "img/p6.png" },
+                { id: "adobe_creative_cloud", name: "Adobe Creative Cloud", category: "Design and Graphics", price: 1099, original: 1399, image: "img/p1.png" },
+                { id: "microsoft_365", name: "Microsoft 365", category: "Productivity", price: 1799, original: 2999, image: "img/microsoft365.png" },
+                { id: "sonyliv_premium", name: "SonyLiv", category: "Entertainment", price: 499, original: 999, image: "img/sonyliv.png" },
+                { id: "jio_hotstar", name: "Jio Hotstar", category: "Entertainment", price: 2799, original: 3999, image: "img/jiohotstar.jpeg" },
+                { id: "zee5_premium", name: "Zee5", category: "Entertainment", price: 3499, original: 4999, image: "img/zee5-2.png" },
+                { id: "youtube_premium", name: "YouTube Premium", category: "Entertainment", price: 3599, original: 4500, image: "img/youtube.jpeg" }
+            ];
+
+            const fmt = n => n.toLocaleString('en-IN');
+            const disc = p => p.original > p.price ? Math.round((p.original - p.price) / p.original * 100) : 0;
+
+            /* DOM refs */
+            const productGrid = document.getElementById('productGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            const categoryList = document.getElementById('categoryList');
+            const categoryListM = document.getElementById('categoryListMobile');
+            const priceList = document.getElementById('priceList');
+            const priceListM = document.getElementById('priceListMobile');
+            const activeChips = document.getElementById('activeChips');
+            const clearBtn = document.getElementById('clearBtn');
+            const clearBtnM = document.getElementById('clearBtnMobile');
+            const sortSelect = document.getElementById('sortSelect');
+            const filterTrigger = document.getElementById('filterTriggerBtn');
+            const filterDrawer = document.getElementById('filterDrawer');
+            const filterOverlay = document.getElementById('filterDrawerOverlay');
+            const drawerClose = document.getElementById('drawerClose');
+            const filterBadge = document.getElementById('filterBadgeCount');
+
+            /* Drawer */
+            const openDrawer = () => { filterDrawer.classList.add('active'); filterOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; };
+            const closeDrawer = () => { filterDrawer.classList.remove('active'); filterOverlay.classList.remove('active'); document.body.style.overflow = ''; };
+            filterTrigger.addEventListener('click', openDrawer);
+            drawerClose.addEventListener('click', closeDrawer);
+            filterOverlay.addEventListener('click', closeDrawer);
+
+            /* Build categories in both sidebar and drawer */
+            function buildCategories() {
+                const counts = {};
+                products.forEach(p => counts[p.category] = (counts[p.category] || 0) + 1);
+                const cats = Object.keys(counts).sort();
+                const html = cats.map(cat => `
+      <li class="filter-item" data-cat="${cat}">
+        <input type="checkbox" class="cat-check" id="cat_${cat.replace(/\W/g, '_')}">
+        <label for="cat_${cat.replace(/\W/g, '_')}" class="filter-row">
+          <span class="filter-name">${cat}</span>
+          <span class="filter-count">(${counts[cat]})</span>
+        </label>
+      </li>`).join('');
+                categoryList.innerHTML = html;
+
+                const htmlM = cats.map(cat => `
+      <li class="filter-item" data-cat="${cat}">
+        <input type="checkbox" class="cat-check-m" id="catm_${cat.replace(/\W/g, '_')}">
+        <label for="catm_${cat.replace(/\W/g, '_')}" class="filter-row">
+          <span class="filter-name">${cat}</span>
+          <span class="filter-count">(${counts[cat]})</span>
+        </label>
+      </li>`).join('');
+                categoryListM.innerHTML = htmlM;
+            }
+
+            /* Get active filters — combine desktop+mobile selections */
+            function getFilters() {
+                const desktopCats = Array.from(document.querySelectorAll('#categoryList .cat-check:checked'))
+                    .map(cb => cb.closest('.filter-item')?.dataset.cat).filter(Boolean);
+                const mobileCats = Array.from(document.querySelectorAll('#categoryListMobile .cat-check-m:checked'))
+                    .map(cb => cb.closest('.filter-item')?.dataset.cat).filter(Boolean);
+                const categories = [...new Set([...desktopCats, ...mobileCats])];
+
+                const dPrice = document.querySelector('#priceList input[type="radio"]:checked')?.closest('.filter-item')?.dataset?.value || 'all';
+                const mPrice = document.querySelector('#priceListMobile input[type="radio"]:checked')?.closest('.filter-item')?.dataset?.value || 'all';
+                const price = dPrice !== 'all' ? dPrice : mPrice;
+
+                return { categories, price };
+            }
+
+            function applyFilters() {
+                const { categories, price } = getFilters();
+                let filtered = [...products];
+
+                if (categories.length) filtered = filtered.filter(p => categories.includes(p.category));
+                if (price !== 'all') {
+                    if (price.endsWith('+')) {
+                        const min = parseInt(price);
+                        filtered = filtered.filter(p => p.price >= min);
+                    } else {
+                        const [min, max] = price.split('-').map(Number);
+                        filtered = filtered.filter(p => p.price >= min && p.price <= max);
+                    }
+                }
+
+                /* Sort */
+                const sort = sortSelect.value;
+                if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+                if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+                if (sort === 'discount') filtered.sort((a, b) => disc(b) - disc(a));
+
+                updateChips(categories, price);
+                updateFilterBadge(categories, price);
+                renderProducts(filtered);
+            }
+
+            function renderProducts(list) {
+                if (!list.length) {
+                    productGrid.innerHTML = '<div class="empty-state">No products found.</div>';
+                    resultsCount.textContent = 'Showing 0 results'; return;
+                }
+                productGrid.innerHTML = list.map(p => `
+      <article class="card">
+        <a href="product.html?id=${p.id}">
+          <div class="card-thumb">
+            <img loading="lazy" src="${p.image}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23222%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23555%22 font-size=%2240%22>🛒</text></svg>'">
+            ${disc(p) > 0 ? `<div class="discount">${disc(p)}%</div>` : ''}
+          </div>
+          <div class="card-body">
+            <div class="product-title">${p.name}</div>
+            <div class="price-area">
+              <div class="price-now">₹${fmt(p.price)}</div>
+              ${p.original > p.price ? `<div class="price-old">₹${fmt(p.original)}</div>` : ''}
+            </div>
+          </div>
+        </a>
+      </article>`).join('');
+                resultsCount.textContent = `Showing ${list.length} result${list.length !== 1 ? 's' : ''}`;
+            }
+
+            function updateChips(cats, price) {
+                activeChips.innerHTML = '';
+                cats.forEach(cat => {
+                    const c = document.createElement('div'); c.className = 'chip';
+                    c.innerHTML = `${cat}<span class="x">✕</span>`;
+                    c.querySelector('.x').onclick = () => {
+                        document.querySelectorAll(`#categoryList .filter-item[data-cat="${cat}"] input, #categoryListMobile .filter-item[data-cat="${cat}"] input`).forEach(i => i.checked = false);
+                        applyFilters();
+                    };
+                    activeChips.appendChild(c);
+                });
+                if (price !== 'all') {
+                    const c = document.createElement('div'); c.className = 'chip';
+                    const label = price.includes('+') ? `₹${fmt(parseInt(price))}+` : `₹${price.split('-').map(v => fmt(+v)).join(' – ')}`;
+                    c.innerHTML = `${label}<span class="x">✕</span>`;
+                    c.querySelector('.x').onclick = () => {
+                        document.getElementById('price_all').checked = true;
+                        document.getElementById('pm_all').checked = true;
+                        applyFilters();
+                    };
+                    activeChips.appendChild(c);
+                }
+            }
+
+            function updateFilterBadge(cats, price) {
+                const count = cats.length + (price !== 'all' ? 1 : 0);
+                filterBadge.textContent = count;
+                filterBadge.classList.toggle('visible', count > 0);
+            }
+
+            function resetFilters() {
+                document.querySelectorAll('#categoryList input, #categoryListMobile input').forEach(i => i.checked = false);
+                document.getElementById('price_all').checked = true;
+                document.getElementById('pm_all').checked = true;
+                sortSelect.value = 'default';
+                applyFilters();
+            }
+
+            function initEvents() {
+                categoryList.addEventListener('change', applyFilters);
+                categoryListM.addEventListener('change', applyFilters);
+                priceList.addEventListener('change', () => {
+                    /* sync mobile price to same value */
+                    const v = document.querySelector('#priceList input:checked')?.closest('.filter-item')?.dataset?.value || 'all';
+                    const target = document.querySelector(`#priceListMobile .filter-item[data-value="${v}"] input`);
+                    if (target) target.checked = true;
+                    applyFilters();
+                });
+                priceListM.addEventListener('change', () => {
+                    const v = document.querySelector('#priceListMobile input:checked')?.closest('.filter-item')?.dataset?.value || 'all';
+                    const target = document.querySelector(`#priceList .filter-item[data-value="${v}"] input`);
+                    if (target) target.checked = true;
+                    applyFilters();
+                });
+                sortSelect.addEventListener('change', applyFilters);
+                clearBtn.addEventListener('click', resetFilters);
+                clearBtnM.addEventListener('click', resetFilters);
+
+                /* click-row toggles */
+                [categoryList, categoryListM].forEach(list => {
+                    list.addEventListener('click', e => {
+                        const item = e.target.closest('.filter-item');
+                        if (!item) return;
+                        if (!e.target.matches('input,label,span')) {
+                            const cb = item.querySelector('input'); cb.checked = !cb.checked; applyFilters();
+                        }
+                    });
+                });
+                [priceList, priceListM].forEach(list => {
+                    list.addEventListener('click', e => {
+                        const item = e.target.closest('.filter-item');
+                        if (!item) return;
+                        if (!e.target.matches('input,label,span')) {
+                            const r = item.querySelector('input'); r.checked = true; applyFilters();
+                        }
+                    });
+                });
+            }
+
+            /* Preselected category from index page */
+            function applyPreselected() {
+                const pre = sessionStorage.getItem('preselectedCategory');
+                if (!pre) return;
+                document.querySelectorAll(`#categoryList .filter-item[data-cat="${pre}"] input`).forEach(i => i.checked = true);
+                sessionStorage.removeItem('preselectedCategory');
+                applyFilters();
+                setTimeout(() => {
+                    const sec = document.querySelector('.products-section');
+                    if (sec) { if (window.lenis) window.lenis.scrollTo(sec, { offset: 80, duration: 1.2 }); else sec.scrollIntoView({ behavior: 'smooth' }); }
+                }, 200);
+            }
+
+            buildCategories();
+            renderProducts(products);
+            initEvents();
+            setTimeout(applyPreselected, 150);
+        })();
+    </script>
 </body>
 
 </html>
