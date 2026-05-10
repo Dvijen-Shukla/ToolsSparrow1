@@ -408,129 +408,251 @@
     }
 
 
+    
 
 
-    .footer {
-      color: #aaa;
-      margin-top: 5rem;
-      /* padding: 20px 6rem; */
-    }
+    
 
-    .footer-inner {
-      padding: 40px;
-      max-width: 100vw;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 60px;
-      border-bottom: 1px solid #222;
-      border-top: 1px solid #555;
-      padding-bottom: 40px;
-      padding: 60px 6rem;
-      padding-left: 7rem;
-      padding-right: 5rem;
-    }
+/* dummy content to show footer at bottom (just for demo) */
+.dummy-space {
+  flex: 1;
+}
 
-    .footer-left {
-      flex: 1;
-    }
+/* ========== FOOTER STYLES – FULLY RESPONSIVE, ORIGINAL DESIGN INTACT ========== */
+.footer {
+  color: #aaa;
+  margin-top: 6rem;
+  /* reduced from 10rem for better spacing on all devices, but still spacious */
+  width: 100%;
+  background: #0a0a0c;
+}
 
-    .footer-logo {
-      width: 140px;
-      margin-bottom: 14px;
-    }
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #555;
+  padding: 60px 6rem;
+  padding-left: 7rem;
+  padding-right: 5rem;
+}
 
-    .footer-tagline {
-      font-size: .9rem;
-      color: #aaa;
-      line-height: 1.6;
-    }
+/* Left Brand Area */
+.footer-left {
+  flex: 1;
+}
 
-    .footer-right {
-      display: flex;
-      gap: 80px;
-    }
+.footer-logo {
+  width: 140px;
+  margin-bottom: 14px;
+}
 
-    .footer-links h4,
-    .footer-contact h4 {
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 24px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
+.footer-tagline {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.6;
+}
 
-    .footer-links ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+/* Right side: links & contact */
+.footer-right {
+  display: flex;
+  gap: 80px;
+}
 
-    .footer-links li {
-      margin-bottom: 15px;
-    }
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 24px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
 
-    .footer-links a {
-      font-size: 1rem;
-      text-decoration: none;
-      color: #aaa;
-      transition: all 0.3s ease;
-      position: relative;
-    }
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .footer-links a:hover {
-      color: #fff;
-    }
+.footer-links li {
+  margin-bottom: 15px;
+}
 
-    .footer-links a:hover::after {
-      width: 100%;
-    }
+.footer-links a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #aaa;
+  transition: all 0.3s ease;
+  position: relative;
+}
 
-    .footer-contact p {
-      font-size: 1rem;
-      margin: 15px 0;
-      color: #aaa;
-    }
+.footer-links a:hover {
+  color: #fff;
+}
 
-    .footer-contact i {
-      color: #777;
-      font-size: .8rem;
-      min-width: 18px;
-      /* keeps alignment clean */
-      transition: color 0.3s;
-    }
+/* optional underline effect (preserved) */
+.footer-links a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
 
-    .footer-contact p:hover i {
-      color: #fff;
-    }
+.footer-contact p {
+  font-size: 1rem;
+  margin: 15px 0;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
-    .footer-contact span {
-      color: #fff;
-      margin-right: 6px;
-    }
+.footer-contact i {
+  color: #777;
+  font-size: 0.9rem;
+  width: 22px;
+  transition: color 0.3s;
+}
 
-    .footer-bottom {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.85rem;
-      color: #777;
-      letter-spacing: 0.3px;
-    }
+.footer-contact p:hover i {
+  color: #fff;
+}
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-      }
+/* bottom bar */
+.footer-bottom {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 0.85rem;
+  color: #777;
+  letter-spacing: 0.3px;
+  border-top: none;
+  background: #0a0a0c;
+}
 
-      .footer-right {
-        flex-direction: column;
-        gap: 30px;
-      }
-    }
+/* ========== PERFECT RESPONSIVENESS – CENTERED ON MOBILE ========== */
+@media (max-width: 1024px) {
+  .footer-inner {
+    padding: 50px 4rem;
+    gap: 50px;
+  }
+
+  .footer-right {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    /* center content horizontally */
+    text-align: center;
+    gap: 40px;
+    padding: 50px 2rem;
+  }
+
+  .footer-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .footer-links,
+  .footer-contact {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-contact p {
+    justify-content: center;
+  }
+
+  .footer-contact i {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    padding: 40px 1.5rem;
+    gap: 32px;
+  }
+
+  .footer-logo {
+    width: 120px;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-contact p {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    padding: 18px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 32px 1.2rem;
+  }
+
+  .footer-contact p {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-contact i {
+    margin-bottom: 4px;
+  }
+}
   </style>
 </head>
 
@@ -626,57 +748,56 @@
 
 
 
+    
+  <!-- Dummy content to simulate page (not part of footer design) -->
+  <div class="dummy-space"></div>
 
-    <!-- ==== FOOTER ==== -->
-    <footer class="footer">
-      <div class="footer-inner">
-
-        <!-- Left: Brand -->
-        <div class="footer-left">
-          <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
-          <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
-        </div>
-
-        <!-- Right: Links + Contact -->
-        <div class="footer-right">
-          <div class="footer-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Refund Policy</a></li>
-              <li><a href="shop.html">Shop</a></li>
-            </ul>
-          </div>
-          <div class="footer-contact">
-            <h4>Contact</h4>
-            <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br>
-              Sihor Ghanghali Road,<br>
-              Bhavnagar, Gujarat, India
-            </p>
-            <p><i class="fas fa-phone"></i> +91 63546 33185</p>
-            <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
-          </div>
-        </div>
+  <!-- ==== FOOTER – FULLY RESPONSIVE, CENTERED ON MOBILE, ORIGINAL STYLE ==== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Left: Brand -->
+      <div class="footer-left">
+        <img src="img/t-logo.png" alt="ToolSparrow Logo" class="footer-logo">
+        <p class="footer-tagline">Affordable Tools & OTT, Simplified.</p>
       </div>
 
-      <!-- Bottom -->
-      <div class="footer-bottom">
-        <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+      <!-- Right: Links + Contact -->
+      <div class="footer-right">
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p><i class="fas fa-map-marker-alt"></i> Shop No. 4A, Maruti Plaza,<br> Sihor Ghanghali Road,<br> Bhavnagar, Gujarat, India</p>
+          <p><i class="fas fa-phone"></i> +91 63546 33185</p>
+          <p><i class="fas fa-envelope"></i> support@toolsparrow.com</p>
+        </div>
       </div>
-    </footer>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>Copyright © 2025 Toolssparrow. All rights reserved.</p>
+    </div>
+  </footer>
 
 
 
-    <!-- Include GSAP + ScrollToPlugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- CORRECT ORDER -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="script.js"></script>
 
-    <script src="script.js"></script>
 
 </body>
 
