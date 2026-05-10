@@ -1,4 +1,65 @@
 
+/* ============================================================
+   NAV ACTIVE
+   ============================================================ */
+(function () {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPage) link.classList.add('active');
+    link.addEventListener('click', function () {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+})();
+
+
+/* ============================================================
+   SEARCH + HAMBURGER
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const searchToggle = document.getElementById('searchToggle');
+  const searchWrapper = document.getElementById('searchWrapper');
+  const searchInput = document.getElementById('searchInput');
+  const hamburger = document.getElementById('hamburgerBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuClose = document.getElementById('menuClose');
+
+  searchToggle.addEventListener('click', (e) => {
+    if (window.innerWidth <= 992) {
+      e.stopPropagation();
+      searchWrapper.classList.toggle('active');
+      if (searchWrapper.classList.contains('active')) searchInput.focus();
+    }
+  });
+
+  const toggleMenu = () => {
+    const isActive = menuOverlay.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  };
+
+  hamburger.addEventListener('click', toggleMenu);
+  if (menuClose) menuClose.addEventListener('click', toggleMenu);
+  document.querySelectorAll('.overlay-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('active')) toggleMenu();
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!searchWrapper.contains(e.target)) searchWrapper.classList.remove('active');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchWrapper.classList.remove('active');
+      if (menuOverlay.classList.contains('active')) toggleMenu();
+    }
+  });
+});
+
+
+
 // ==================== PRODUCT DATABASE (15 Products from Shop) ====================
 const PRODUCTS_DB = [
     {
